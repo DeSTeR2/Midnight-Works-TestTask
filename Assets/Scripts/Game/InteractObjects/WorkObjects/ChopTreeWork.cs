@@ -1,4 +1,5 @@
 ﻿using CustomSystems;
+using Resources;
 using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -8,6 +9,7 @@ namespace InteractObjects.Work
     public class ChopTreeWork : WorkObject, IWorkPlace
     {
         [SerializeField] float spawnRadius;
+        [SerializeField] protected ResourceType resourceType;
 
         public override void AfterWork()
         {

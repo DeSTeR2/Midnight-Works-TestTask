@@ -50,6 +50,7 @@ MonoBehaviour:
   placePositionsParent: {fileID: 4666957406457983511}
   placeBoundariesParent: {fileID: 2098870676072646507}
   isOnFloor: 1
+  placeConfig: {fileID: 0}
 --- !u!120 &2382822322927447219
 LineRenderer:
   serializedVersion: 2
@@ -150,7 +151,7 @@ LineRenderer:
     alignment: 0
     textureMode: 2
     textureScale: {x: 1.06, y: 1}
-    shadowBias: 0.5
+    shadowBias: 0
     generateLightingData: 0
   m_MaskInteraction: 0
   m_UseWorldSpace: 0

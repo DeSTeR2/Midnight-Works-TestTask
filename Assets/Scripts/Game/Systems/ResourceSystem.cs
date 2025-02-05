@@ -43,13 +43,14 @@ namespace CustomSystems
             }
         }
    
-        public void RequestSpawnResource(ResourceType resourceType, Vector3 position, Quaternion rotation, bool isOnFloor)
+        public InteractObject RequestSpawnResource(ResourceType resourceType, Vector3 position, Quaternion rotation, bool isOnFloor)
         {
             InteractObject rec = resourcesDictionary[resourceType].GetObject();
             rec.transform.position = position;
             rec.transform.rotation = rotation;
 
             rec.gameObject.SetActive(true);
+            return rec;
         }
 
         private void SpawnObject(ObjectPool<InteractObject> objectPool)
@@ -59,6 +60,7 @@ namespace CustomSystems
         }
 
         public void BackObject(InteractObject resource) {
+            resource.gameObject.SetActive(false);
             ResourceType type = resource.ResourceType;
             resourcesDictionary[type].AddObject(resource);
         }

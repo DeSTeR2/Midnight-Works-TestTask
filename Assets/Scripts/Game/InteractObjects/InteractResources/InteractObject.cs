@@ -12,6 +12,11 @@ namespace InteractObjects
 
         public ResourceType ResourceType { get => config.resourceType; }
 
+        private void OnEnable()
+        {
+            gameObject.GetComponent<BoxCollider>().enabled = true;   
+        }
+
         private void Start()
         {
             resource = new Resource(config.resourceType, config);

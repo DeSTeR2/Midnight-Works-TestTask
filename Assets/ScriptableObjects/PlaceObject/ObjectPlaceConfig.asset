@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94036d310cdef394db3212bc6c98d4f4, type: 3}
-  m_Name: CharacterInteractConfig
+  m_Script: {fileID: 11500000, guid: a19ed8bbff5b8b242ac7a61b73716017, type: 3}
+  m_Name: ObjectPlaceConfig
   m_EditorClassIdentifier: 
-  interactLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  interactRadius: 1
-  interactOffset: {x: 0, y: 0.96, z: 0}
+  capability: 3

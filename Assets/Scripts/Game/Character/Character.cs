@@ -72,6 +72,8 @@ namespace Character
                 try
                 {
                     IObjectPlace interact = FindObject<IObjectPlace>();
+                    if (interact.CanPlace(obj.ResourceType) == false) return;
+
                     animationController.PutDown(interact.IsOnFloor);
 
                     DelaySystem.DelayFunction(delegate
@@ -128,7 +130,7 @@ namespace Character
             {
                 T work = FindObject<T>();
                 isWorking = !isWorking;
-
+                Debug.Log($"Found work object. Working state: {isWorking}");
                 work.Work(isWorking, this);
                 return true;
             } catch

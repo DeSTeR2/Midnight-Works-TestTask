@@ -9,19 +9,17 @@ namespace InteractObjects.Work
 {
     public class WorkObject : MonoBehaviour, IWorkPlace
     {
-        [SerializeField] float workTime;
-        [SerializeField] WorkStatus workStatus;
-        [SerializeField] protected ResourceType resourceType;
+        [SerializeField] protected float workTime;
+        [SerializeField] protected WorkStatus workStatus;
         private Action onEndWork;
 
         public float WorkTime => workTime;
         public Action OnEndWork => onEndWork;
 
-        LoadSystem loadSystem;
+        protected LoadSystem loadSystem;
+        protected Character.Character workingCharacter;
 
-        Character.Character workingCharacter;
-
-        private void Start()
+        protected virtual void Start()
         {
             workStatus.OnLoadEnd += AfterWork;
             loadSystem = new(workTime, 0.2f);
@@ -37,15 +35,17 @@ namespace InteractObjects.Work
             workStatus.OnLoadEnd -= AfterWork;
         }
 
-        public void Work(bool isWork, Character.Character character)
+        public virtual void Work(bool isWork, Character.Character character)
         {
             if (isWork && workingCharacter == null)
             {
+                Debug.Log("Start work");
                 this.workingCharacter = character;
                 workStatus.StartLoad(loadSystem);
             }
             else
             {
+                Debug.Log("End work in Work");
                 this.workingCharacter = null;
                 workStatus.EndLoad();
             }
@@ -53,7 +53,9 @@ namespace InteractObjects.Work
 
         private void EndWork()
         {
+            Debug.Log("End Work");
             workingCharacter.EndWork();
+            this.workingCharacter = null;
             OnEndWork?.Invoke();
         }
     }

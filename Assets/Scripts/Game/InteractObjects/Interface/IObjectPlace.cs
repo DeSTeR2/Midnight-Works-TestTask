@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Resources;
+using UnityEngine;
 
 namespace InteractObjects
 {
@@ -6,5 +7,6 @@ namespace InteractObjects
     {
         bool IsOnFloor { get; }
         void PutObject(GameObject go);
+        bool CanPlace(ResourceType resourceType);
     }
 }

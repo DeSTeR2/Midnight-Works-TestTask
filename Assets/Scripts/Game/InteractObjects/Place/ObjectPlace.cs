@@ -1,4 +1,5 @@
 ﻿using InteractObjects.Place;
+using Resources;
 using UnityEngine;
 
 namespace InteractObjects
@@ -12,7 +13,7 @@ namespace InteractObjects
         [Space]
         [SerializeField] ObjectPlaceConfig placeConfig;
 
-        PlaceObjects placeStrategy;
+        protected PlaceObjects placeStrategy;
 
         public bool IsOnFloor => isOnFloor;
 
@@ -50,9 +51,11 @@ namespace InteractObjects
             boxCollider.size = new Vector3(horizontalSize, 2, verticalSize);
         }
 
-        public void PutObject(GameObject go)
+        public virtual void PutObject(GameObject go)
         {
             placeStrategy.Place(go);
         }
+
+        public virtual bool CanPlace(ResourceType type) => placeStrategy.CanPlace();
     }
 }
