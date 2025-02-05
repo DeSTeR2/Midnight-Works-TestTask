@@ -7,12 +7,13 @@ namespace Character
     public class Player : Character
     {
         [SerializeField] Button interactBtn;
+        [SerializeField] 
 
         protected override void Start()
         {
             base.Start();
             interactBtn.onClick.AddListener(delegate {
-                OperateWithObject();
+                Interact();
             });
         }
 
@@ -22,6 +23,11 @@ namespace Character
             float z = Input.GetAxis("Vertical");
 
             SetMoveVector(new Vector3(x, 0, z));
+        }
+
+        public void Work()
+        {
+
         }
     }
 }

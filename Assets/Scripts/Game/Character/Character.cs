@@ -1,5 +1,6 @@
 ﻿using CustomSystems;
 using InteractObjects;
+using InteractObjects.Work;
 using System.Collections;
 using System.ComponentModel;
 using UnityEngine;
@@ -19,7 +20,7 @@ namespace Character
         CharacterAnimationController animationController;
 
         Vector3 inputVec;
-        bool isPaused;
+        bool isWorking = false;
 
         IInteractObject carryObject;
 
@@ -63,36 +64,97 @@ namespace Character
             return inputVec.magnitude * moveSpeed;
         }
 
-        protected void OperateWithObject()
+        private void PlaceObject()
         {
-            if (animationController.State == CharacterState.Idle && carryObject == null)
-            {
-                IInteractObject interact = FindObject<IInteractObject>();
-                interact.PickUp();
-                carryObject = interact;
-
-                InteractObject obj = interact.GetObject<InteractObject>();
-
-                animationController.PickUp(obj.isInFloor);
-                DelaySystem.DelayFunction(delegate
-                {
-                    ShowItem(obj.gameObject);
-                }, .5f);
-            }
-            else if (animationController.State == CharacterState.Carring && carryObject != null)
+            if (animationController.State == CharacterState.Carring && carryObject != null && isWorking == false)
             {
                 InteractObject obj = carryObject.GetObject<InteractObject>();
-
-                IObjectPlace interact = FindObject<IObjectPlace>();
-                animationController.PutDown(interact.IsOnFloor);
-
-                DelaySystem.DelayFunction(delegate
+                try
                 {
-                    interact.PutObject(obj.gameObject);
-                    carryObject.PutDown();
-                    carryObject = null;
-                }, .5f);
+                    IObjectPlace interact = FindObject<IObjectPlace>();
+                    animationController.PutDown(interact.IsOnFloor);
+
+                    DelaySystem.DelayFunction(delegate
+                    {
+                        interact.PutObject(obj.gameObject);
+                        carryObject.PutDown();
+                        carryObject = null;
+                    }, .5f);
+                }
+                catch { }
             }
+        }
+
+        private void TakeObject()
+        {
+            if (animationController.State == CharacterState.Idle && carryObject == null && isWorking == false)
+            {
+                try
+                {
+                    IInteractObject interact = FindObject<IInteractObject>();
+                    interact.PickUp();
+                    carryObject = interact;
+
+                    InteractObject obj = interact.GetObject<InteractObject>();
+
+                    animationController.PickUp(obj.isInFloor);
+                    DelaySystem.DelayFunction(delegate
+                    {
+                        ShowItem(obj.gameObject);
+                    }, .5f);
+                } catch { }
+            }
+        }
+        
+        protected void Work()
+        {
+            if (!(animationController.State == CharacterState.Idle && carryObject == null)) return;
+
+            if (TryWork<ChopTreeWork>())
+            {
+                WorkAnimation(CharacterAnimations.CoppingTree);
+                return;
+            }
+            if (TryWork<MachineWork>())
+            {
+                WorkAnimation(CharacterAnimations.MachineWorking); 
+                return;
+            }
+        }
+
+        private bool TryWork<T>() where T : IWorkPlace
+        {
+            try
+            {
+                T work = FindObject<T>();
+                isWorking = !isWorking;
+
+                work.Work(isWorking, this);
+                return true;
+            } catch
+            {
+                return false;
+            }
+        }
+
+        public void EndWork()
+        {
+            isWorking = false;
+            WorkAnimation(CharacterAnimations.IsWorking);
+            WorkAnimation(CharacterAnimations.CoppingTree);
+            WorkAnimation(CharacterAnimations.MachineWorking);
+        }
+
+        protected void WorkAnimation(string animName)
+        {
+            animationController.WorkAnimation(animName, isWorking);
+        }
+
+        protected void Interact()
+        {
+            PlaceObject();
+            TakeObject();
+            Work();
         }
 
         private T FindObject<T>()

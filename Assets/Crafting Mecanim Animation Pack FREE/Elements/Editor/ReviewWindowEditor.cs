@@ -110,7 +110,7 @@ namespace CraftingFREE //MODIFY
             {
                 if (currentConfig == null)
                 {
-                    currentConfig = Resources.Load(fileName, typeof(ReviewConfig)) as ReviewConfig;
+                    currentConfig = UnityEngine.Resources.Load(fileName, typeof(ReviewConfig)) as ReviewConfig;
                 }
 
                 return currentConfig;

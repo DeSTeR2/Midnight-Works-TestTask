@@ -493,7 +493,7 @@ public class ModulesShaker : MonoBehaviour {
     }
     private Mesh findMesh(string element, string from_package, string numeration, bool random, bool randomOtherPackages, int tries)
     {
-        Mesh[] meshes = Resources.FindObjectsOfTypeAll<Mesh>();
+        Mesh[] meshes = UnityEngine.Resources.FindObjectsOfTypeAll<Mesh>();
         Mesh ret = null;
 
         string meshName = element + "_" + from_package + "_" + numeration;

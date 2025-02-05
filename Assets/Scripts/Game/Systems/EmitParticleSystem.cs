@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using CustomSystems;
 
 public enum ParticleType
 {
@@ -83,7 +84,7 @@ public class EmitParticleSystem : MonoBehaviour
         objectPool[particle.particleType].AddObject(particle);
     }
 
-    private void AddParticle()
+    private void AddParticle(ObjectPool<Particle> objectP)
     {
         List<ParticleSystem> list = new List<ParticleSystem>();
         for (int i = 0; i < particlesDictionary[currentParticleType].particles.Count; i++) {

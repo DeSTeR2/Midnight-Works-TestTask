@@ -8,17 +8,22 @@ namespace InteractObjects.Place
         List<Transform> positions;
         int index = 0;
 
-        public PlaceObjects(Transform positions)
+        ObjectPlaceConfig config;
+
+        public PlaceObjects(Transform positions, ObjectPlaceConfig config)
         {
             this.positions = new();
             foreach (Transform t in positions)
             {
                 this.positions.Add(t);
             }
+
+            this.config = config;
         }
 
         public bool Place(GameObject go)
         {
+            Debug.LogWarning("TODO: place with capability");
             UpdateIndex();
             if (index < positions.Count)
             {

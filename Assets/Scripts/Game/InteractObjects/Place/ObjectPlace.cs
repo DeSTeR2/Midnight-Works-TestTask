@@ -1,6 +1,4 @@
 ﻿using InteractObjects.Place;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace InteractObjects
@@ -11,13 +9,21 @@ namespace InteractObjects
         [SerializeField] Transform placeBoundariesParent;
         [SerializeField] bool isOnFloor;
 
+        [Space]
+        [SerializeField] ObjectPlaceConfig placeConfig;
+
         PlaceObjects placeStrategy;
 
         public bool IsOnFloor => isOnFloor;
 
-        private void Start()
+        protected virtual void Start()
         {
-            placeStrategy = new(placePositionsParent);
+            InitalSetup();
+        }
+
+        protected void InitalSetup()
+        {
+            placeStrategy = new(placePositionsParent, placeConfig);
 
             LineRenderer lineRenderer = gameObject.GetComponent<LineRenderer>();
             float horizontalSize = 0;
@@ -25,7 +31,8 @@ namespace InteractObjects
 
             float minX = float.PositiveInfinity, maxX = float.NegativeInfinity;
             float minZ = float.PositiveInfinity, maxZ = float.NegativeInfinity;
-            for (int i = 0; i < placeBoundariesParent.childCount; i++) {
+            for (int i = 0; i < placeBoundariesParent.childCount; i++)
+            {
                 Vector3 pos = placeBoundariesParent.GetChild(i).transform.localPosition;
                 lineRenderer.SetPosition(i, pos);
 

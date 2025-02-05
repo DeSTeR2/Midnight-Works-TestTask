@@ -1,10 +1,21 @@
-﻿using UnityEngine;
+﻿using Resources;
+using UnityEngine;
 
 namespace InteractObjects
 {
     public class InteractObject : MonoBehaviour, IInteractObject
     {
+        [SerializeField] ResourceConfig config;
         public bool isInFloor;
+
+        Resource resource;
+
+        public ResourceType ResourceType { get => config.resourceType; }
+
+        private void Start()
+        {
+            resource = new Resource(config.resourceType, config);
+        }
 
         public T GetObject<T>()
         {

@@ -62,11 +62,11 @@ namespace Character
         {
             if (floor)
             {
-                SetAnimation(CharacterAnimations.PickObjectFromFloor);
+                SetAnimationTrigger(CharacterAnimations.PickObjectFromFloor);
             }
             else
             {
-                SetAnimation(CharacterAnimations.PickObjectFromTable);
+                SetAnimationTrigger(CharacterAnimations.PickObjectFromTable);
             }
         }
 
@@ -79,17 +79,29 @@ namespace Character
         private void PutDownAnimation(bool floor) { 
             if (floor)
             {
-                SetAnimation(CharacterAnimations.PutDownObjectToFloor);
+                SetAnimationTrigger(CharacterAnimations.PutDownObjectToFloor);
             } else
             {
-                SetAnimation(CharacterAnimations.PutDownObjectToTable);
+                SetAnimationTrigger(CharacterAnimations.PutDownObjectToTable);
             }
         }
 
-        private void SetAnimation(string animName)
+        private void SetAnimationTrigger(string animName)
         {
             animator.SetTrigger(animName);
             PauseAnimations(1.2f);
+        }
+
+        public void WorkAnimation(string animName, bool start)
+        {
+            isPaused = start;
+            SetAnimationBool(animName, start);
+            SetAnimationBool(CharacterAnimations.IsWorking, start);
+        }
+
+        private void SetAnimationBool(string animName, bool state)
+        {
+            animator.SetBool(animName, state);
         }
 
         async void PauseAnimations(float pauseTime)
@@ -106,5 +118,8 @@ namespace Character
         public static string PickObjectFromTable = "CarryRecieveTrigger";
         public static string PutDownObjectToFloor = "CarryPutdownTrigger";
         public static string PutDownObjectToTable = "CarryHandoffTrigger";
+        public static string MachineWorking = "MachineWorking";
+        public static string CoppingTree = "CoppingTree";
+        public static string IsWorking = "IsWorking";
     }
 }
