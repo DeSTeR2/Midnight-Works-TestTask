@@ -38,7 +38,6 @@ namespace InteractObjects.Work
 
                 if (state >= 1)
                 {
-                    Debug.Log("State is 1");
                     loadImage.fillAmount = 1;
                     loadSystem.OnTickEnd -= UpdateStatus;
                     OnLoadEnd?.Invoke();

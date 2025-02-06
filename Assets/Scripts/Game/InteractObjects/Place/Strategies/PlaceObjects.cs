@@ -39,7 +39,7 @@ namespace InteractObjects.Place
         public bool CanPlace(int objectNumber = 1)
         {
             UpdateIndex();
-            if (index + objectNumber < positions.Count && index + objectNumber < config.capability) return true;
+            if (index + objectNumber <= positions.Count && index + objectNumber <= config.capability) return true;
             return false;
         }
 
@@ -72,5 +72,6 @@ namespace InteractObjects.Place
             }
             return number;
         }
+        public int MaxObjects() => config.capability;
     }
 }

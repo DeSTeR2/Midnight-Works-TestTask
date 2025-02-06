@@ -1,15 +1,15 @@
 ﻿using CustomSystems;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEngine.GraphicsBuffer;
 
 namespace Character.Worker
 {
-    public class Worker : Character
+    public class AIWalkable : Character
     {
-        [SerializeField] float distToStop = 0.1f;
+        [SerializeField] float distToStop = 0.15f;
 
         NavMeshAgent agent;
-        public GameObject go;
 
         bool isPathCompleted = false;
         bool isAllowedToMove = false;
@@ -18,8 +18,6 @@ namespace Character.Worker
         {
             base.Start();
             agent = GetComponent<NavMeshAgent>();
-
-            AssignWalkTarget(go);
         }
 
         private void FixedUpdate()
@@ -46,14 +44,19 @@ namespace Character.Worker
             isPathCompleted = true;
         }
 
-        public void AssignWalkTarget(GameObject target)
+        public void AssignWalkTarget(Vector3 position)
         {
-            agent.SetDestination(target.transform.position);
+            agent.SetDestination(position);
             isPathCompleted = false;
 
-            DelaySystem.DelayFunction(delegate { 
+            DelaySystem.DelayFunction(delegate {
                 isAllowedToMove = true;
             }, .5f);
+        }
+
+        public void AssignWalkTarget(GameObject target)
+        {
+            AssignWalkTarget(target.transform.position);
         }
     }
 }

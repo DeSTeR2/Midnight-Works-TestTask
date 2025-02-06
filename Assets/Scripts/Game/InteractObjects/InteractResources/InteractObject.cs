@@ -9,6 +9,7 @@ namespace InteractObjects
         public bool isInFloor;
 
         Resource resource;
+        BoxCollider collider;
 
         public ResourceType ResourceType { get => config.resourceType; }
 
@@ -19,6 +20,7 @@ namespace InteractObjects
 
         private void Start()
         {
+            collider = GetComponent<BoxCollider>();
             resource = new Resource(config.resourceType, config);
         }
 
@@ -37,10 +39,12 @@ namespace InteractObjects
         public void PickUp()
         {
             EmitParticleSystem.instance.Play(ParticleType.PickObject,transform.position);
+            collider.enabled = false;
         }
 
         public void PutDown()
         {
+            collider.enabled = true;
             gameObject.transform.parent = null;
             gameObject.transform.rotation = Quaternion.Euler(0, gameObject.transform.rotation.eulerAngles.y, 0);
             EmitParticleSystem.instance.Play(ParticleType.PutDownObject, transform.position + new Vector3(0, 1,0));

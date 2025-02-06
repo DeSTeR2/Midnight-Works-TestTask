@@ -32,5 +32,6 @@ namespace InteractObjects.Work
             }
         }
         public int ObjectNumber() => placeStrategy.ObjectNumber();
+        public int RemaintObjectsToFull() => placeStrategy.MaxObjects() - ObjectNumber();
     }
 }

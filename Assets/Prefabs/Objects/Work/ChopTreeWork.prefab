@@ -427,8 +427,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   workTime: 4
   workStatus: {fileID: 6111247002807595291}
+  isWorking: 0
   spawnRadius: 2
   resourceType: 0
+  maxObjectsNearTree: 5
 --- !u!1 &9085278796928483943
 GameObject:
   m_ObjectHideFlags: 0

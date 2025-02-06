@@ -31,7 +31,8 @@ namespace InteractObjects.Work
             base.AfterWork();
             Vector3 position = GetRngPosition();
             Quaternion rotation = GetRngRotation();
-            ResourceSystem.instance.RequestSpawnResource(resourceType, position, rotation, true);
+            InteractObject obj = ResourceSystem.instance.RequestSpawnResource(resourceType, position, rotation, true);
+            obj.isInFloor = true;
         }
 
         private Vector3 GetRngPosition()

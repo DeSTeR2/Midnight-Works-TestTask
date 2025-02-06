@@ -1,11 +1,21 @@
 ﻿using CustomSystems;
 using InteractObjects.Work;
+using System;
+using UnityEngine;
 
 namespace Character.Worker
 {
-    public class MachineWorker : Worker
+    public class MachineWorker : AIWalkable
     {
+        [SerializeField] GameObject workObject;
+
         MachineWork work;
+
+        protected override void Start()
+        {
+            base.Start();
+            AssignWalkTarget(workObject);
+        }
 
         protected override void CompletePath()
         {

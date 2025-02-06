@@ -43,6 +43,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Worker Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 1965107420363712, guid: b8b1f673afe204743824d4094dc4d7ca, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4393496376346426, guid: b8b1f673afe204743824d4094dc4d7ca, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.933054
@@ -129,7 +133,7 @@ MonoBehaviour:
   leftHand: {fileID: 2268057483210348513}
   rightHand: {fileID: 2262545426811229389}
   interactConfig: {fileID: 11400000, guid: 6abe11b92e4c5f04b8f5ce1eabfdbd32, type: 2}
-  go: {fileID: 0}
+  distToStop: 0.15
 --- !u!195 &-5047171644801003014
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -139,7 +143,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 2265812551772912361}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.29
+  m_Radius: 0.5
   m_Speed: 0
   m_Acceleration: 0
   avoidancePriority: 50

@@ -40,14 +40,12 @@ namespace InteractObjects.Work
             if (isWork && workingCharacter == null)
             {
                 isWorking = true;
-                Debug.Log("Start work");
                 this.workingCharacter = character;
                 workStatus.StartLoad(loadSystem);
             }
             else
             {
                 isWorking = false;
-                Debug.Log("End work in Work");
                 this.workingCharacter = null;
                 workStatus.EndLoad();
             }
@@ -55,7 +53,6 @@ namespace InteractObjects.Work
 
         private void EndWork()
         {
-            Debug.Log("End Work");
             workingCharacter.EndWork();
             this.workingCharacter = null;
             onEndWork?.Invoke();

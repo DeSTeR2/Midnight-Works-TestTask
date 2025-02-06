@@ -1,6 +1,7 @@
 ﻿using CustomSystems;
 using InteractObjects;
 using InteractObjects.Work;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Character
@@ -47,7 +48,6 @@ namespace Character
         {
             //if (!animationController.IsPause)
             //{
-            Debug.Log($"Rotate {dir}");
             if (dir != Vector3.zero)
             {
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * rotationSpeed);
@@ -65,7 +65,7 @@ namespace Character
             return inputVec.magnitude * moveSpeed;
         }
 
-        protected void PlaceObject()
+        protected async Task<bool> PlaceObject()
         {
             if (animationController.State == CharacterState.Carring && carryObject != null && isWorking == false)
             {
@@ -73,22 +73,24 @@ namespace Character
                 try
                 {
                     IObjectPlace interact = FindObject<IObjectPlace>();
-                    if (interact.CanPlace(obj.ResourceType) == false) return;
+                    if (interact.CanPlace(obj.ResourceType) == false) return false;
 
                     animationController.PutDown(interact.IsOnFloor);
 
-                    DelaySystem.DelayFunction(delegate
+                    await DelaySystem.DelayFunction(delegate
                     {
                         carryObject.PutDown();
                         interact.PutObject(obj.gameObject);
                         carryObject = null;
                     }, .5f);
+                    return true;
                 }
                 catch { }
             }
+            return false;
         }
 
-        protected void TakeObject()
+        protected async Task<bool> TakeObject()
         {
             if (animationController.State == CharacterState.Idle && carryObject == null && isWorking == false)
             {
@@ -101,13 +103,16 @@ namespace Character
                     InteractObject obj = interact.GetObject<InteractObject>();
 
                     animationController.PickUp(obj.isInFloor);
-                    DelaySystem.DelayFunction(delegate
+                    await DelaySystem.DelayFunction(delegate
                     {
                         ShowItem(obj.gameObject);
                     }, .5f);
+
+                    return true;
                 }
                 catch { }
             }
+            return false;
         }
 
         protected T TryWork<T>() where T : IWorkPlace
@@ -116,7 +121,6 @@ namespace Character
             {
                 T work = FindObject<T>();
                 isWorking = !isWorking;
-                Debug.Log($"Found work object. Working state: {isWorking}");
                 work.Work(isWorking, this);
                 return work;
             }
@@ -128,7 +132,6 @@ namespace Character
 
         protected void DropObject()
         {
-            Debug.Log(carryObject + " " + animationController.State);
             if (carryObject != null && animationController.State == CharacterState.Carring)
             {
                 animationController.PutDown(true);
@@ -163,7 +166,6 @@ namespace Character
                 GameObject obj = collider.gameObject;
                 if (obj.TryGetComponent(out T component))
                 {
-                    Debug.Log($"Found object {obj}");
                     return component;
                 }
             }

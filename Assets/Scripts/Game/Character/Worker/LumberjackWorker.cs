@@ -5,11 +5,18 @@ using UnityEngine;
 
 namespace Character.Worker
 {
-    public class LumberjackWorker : Worker
+    public class LumberjackWorker : AIWalkable
     {
         [SerializeField] GameObject axe;
+        [SerializeField] GameObject workOblect;
 
         ChopTreeWork work;
+
+        protected override void Start()
+        {
+            base.Start();
+            AssignWalkTarget(workOblect);
+        }
 
         protected override void CompletePath()
         {
