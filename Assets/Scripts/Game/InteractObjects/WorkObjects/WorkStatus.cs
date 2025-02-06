@@ -32,15 +32,19 @@ namespace InteractObjects.Work
 
         private void UpdateStatus(float state)
         {
-            loadImage.fillAmount = state;
-
-            if (state >= 1)
+            try
             {
-                Debug.Log("State is 1");
-                loadImage.fillAmount = 1;
-                loadSystem.OnTickEnd -= UpdateStatus;
-                OnLoadEnd?.Invoke();
+                loadImage.fillAmount = state;
+
+                if (state >= 1)
+                {
+                    Debug.Log("State is 1");
+                    loadImage.fillAmount = 1;
+                    loadSystem.OnTickEnd -= UpdateStatus;
+                    OnLoadEnd?.Invoke();
+                }
             }
+            catch { }
         }
     }
 }

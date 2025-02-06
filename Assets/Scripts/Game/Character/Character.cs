@@ -1,8 +1,6 @@
 ﻿using CustomSystems;
 using InteractObjects;
 using InteractObjects.Work;
-using System.Collections;
-using System.ComponentModel;
 using UnityEngine;
 
 namespace Character
@@ -14,15 +12,17 @@ namespace Character
 
         [Space]
         [SerializeField] Transform carryPoint;
+        [SerializeField] Transform leftHand;
+        [SerializeField] Transform rightHand;
         [SerializeField] CharacterInteractConfig interactConfig;
 
         private Animator animator;
-        CharacterAnimationController animationController;
+        protected CharacterAnimationController animationController;
 
         Vector3 inputVec;
-        bool isWorking = false;
+        protected bool isWorking = false;
 
-        IInteractObject carryObject;
+        protected IInteractObject carryObject;
 
         void Awake()
         {
@@ -43,28 +43,29 @@ namespace Character
             inputVec = moveVector;
         }
 
-        void RotateTowardsMovementDir()
+        protected void RotateTowards(Vector3 dir)
         {
-            if (!animationController.IsPause)
+            //if (!animationController.IsPause)
+            //{
+            Debug.Log($"Rotate {dir}");
+            if (dir != Vector3.zero)
             {
-                if (inputVec != Vector3.zero)
-                {
-                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(inputVec), Time.deltaTime * rotationSpeed);
-                }
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * rotationSpeed);
             }
+            //}
         }
 
         public float UpdateMovement()
         {
             if (!animationController.IsPause)
             {
-                RotateTowardsMovementDir();
+                RotateTowards(inputVec);
             }
 
             return inputVec.magnitude * moveSpeed;
         }
 
-        private void PlaceObject()
+        protected void PlaceObject()
         {
             if (animationController.State == CharacterState.Carring && carryObject != null && isWorking == false)
             {
@@ -78,8 +79,8 @@ namespace Character
 
                     DelaySystem.DelayFunction(delegate
                     {
-                        interact.PutObject(obj.gameObject);
                         carryObject.PutDown();
+                        interact.PutObject(obj.gameObject);
                         carryObject = null;
                     }, .5f);
                 }
@@ -87,7 +88,7 @@ namespace Character
             }
         }
 
-        private void TakeObject()
+        protected void TakeObject()
         {
             if (animationController.State == CharacterState.Idle && carryObject == null && isWorking == false)
             {
@@ -104,27 +105,12 @@ namespace Character
                     {
                         ShowItem(obj.gameObject);
                     }, .5f);
-                } catch { }
-            }
-        }
-        
-        protected void Work()
-        {
-            if (!(animationController.State == CharacterState.Idle && carryObject == null)) return;
-
-            if (TryWork<ChopTreeWork>())
-            {
-                WorkAnimation(CharacterAnimations.CoppingTree);
-                return;
-            }
-            if (TryWork<MachineWork>())
-            {
-                WorkAnimation(CharacterAnimations.MachineWorking); 
-                return;
+                }
+                catch { }
             }
         }
 
-        private bool TryWork<T>() where T : IWorkPlace
+        protected T TryWork<T>() where T : IWorkPlace
         {
             try
             {
@@ -132,14 +118,30 @@ namespace Character
                 isWorking = !isWorking;
                 Debug.Log($"Found work object. Working state: {isWorking}");
                 work.Work(isWorking, this);
-                return true;
-            } catch
+                return work;
+            }
+            catch
             {
-                return false;
+                return default;
             }
         }
 
-        public void EndWork()
+        protected void DropObject()
+        {
+            Debug.Log(carryObject + " " + animationController.State);
+            if (carryObject != null && animationController.State == CharacterState.Carring)
+            {
+                animationController.PutDown(true);
+
+                DelaySystem.DelayFunction(delegate
+                {
+                    carryObject.PutDown();
+                    carryObject = null;
+                }, .55f);
+            }
+        }
+
+        public virtual void EndWork()
         {
             isWorking = false;
             WorkAnimation(CharacterAnimations.IsWorking);
@@ -150,13 +152,6 @@ namespace Character
         protected void WorkAnimation(string animName)
         {
             animationController.WorkAnimation(animName, isWorking);
-        }
-
-        protected void Interact()
-        {
-            PlaceObject();
-            TakeObject();
-            Work();
         }
 
         private T FindObject<T>()
@@ -176,7 +171,6 @@ namespace Character
             throw new System.Exception("Didn't find any objects");
         }
 
-
         protected void ShowItem(GameObject item)
         {
             if (item != null)
@@ -185,6 +179,17 @@ namespace Character
                 item.transform.localPosition = Vector3.zero;
                 item.transform.localRotation = Quaternion.identity;
             }
+        }
+
+        private void LateUpdate()
+        {
+            UpdateCarryPoint();
+        }
+
+        private void UpdateCarryPoint()
+        {
+            Vector3 position = (leftHand.transform.position + rightHand.transform.position) / 2;
+            carryPoint.position = position;
         }
     }
 

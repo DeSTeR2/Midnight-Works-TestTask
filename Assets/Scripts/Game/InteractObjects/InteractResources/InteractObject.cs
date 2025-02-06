@@ -41,7 +41,9 @@ namespace InteractObjects
 
         public void PutDown()
         {
-            EmitParticleSystem.instance.Play(ParticleType.PutDownObject, transform.position);
+            gameObject.transform.parent = null;
+            gameObject.transform.rotation = Quaternion.Euler(0, gameObject.transform.rotation.eulerAngles.y, 0);
+            EmitParticleSystem.instance.Play(ParticleType.PutDownObject, transform.position + new Vector3(0, 1,0));
         }
     }
 }

@@ -31,11 +31,13 @@ namespace InteractObjects.Work
             {
                 this.workingCharacter = character;
                 workStatus.StartLoad(loadSystem);
+                isWorking = true;
 
                 Debug.Log("Start work");
             }
             else
             {
+                isWorking = false;
                 this.workingCharacter = null;
                 workStatus.EndLoad();
 
@@ -45,12 +47,12 @@ namespace InteractObjects.Work
 
         public override void AfterWork()
         {
-            base.AfterWork();
             if (takePlace.AddObject(receipt.craftResult))
             {
                 awailableItems -= receipt.craftFrom.count;
                 putPlace.RemoveObjects(receipt.craftFrom.count);
             }
+            base.AfterWork();
         }
 
         private void OnDestroy()

@@ -11,10 +11,10 @@ namespace InteractObjects.Work
     {
         [SerializeField] protected float workTime;
         [SerializeField] protected WorkStatus workStatus;
-        private Action onEndWork;
 
+        public Action onEndWork;
+        public bool isWorking = false;
         public float WorkTime => workTime;
-        public Action OnEndWork => onEndWork;
 
         protected LoadSystem loadSystem;
         protected Character.Character workingCharacter;
@@ -39,12 +39,14 @@ namespace InteractObjects.Work
         {
             if (isWork && workingCharacter == null)
             {
+                isWorking = true;
                 Debug.Log("Start work");
                 this.workingCharacter = character;
                 workStatus.StartLoad(loadSystem);
             }
             else
             {
+                isWorking = false;
                 Debug.Log("End work in Work");
                 this.workingCharacter = null;
                 workStatus.EndLoad();
@@ -56,7 +58,7 @@ namespace InteractObjects.Work
             Debug.Log("End Work");
             workingCharacter.EndWork();
             this.workingCharacter = null;
-            OnEndWork?.Invoke();
+            onEndWork?.Invoke();
         }
     }
 }

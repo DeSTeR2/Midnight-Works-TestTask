@@ -10,6 +10,21 @@ namespace InteractObjects.Work
     {
         [SerializeField] float spawnRadius;
         [SerializeField] protected ResourceType resourceType;
+        [SerializeField] int maxObjectsNearTree = 15;
+
+        public override void Work(bool isWork, Character.Character character)
+        {
+            Collider[] colliders = Physics.OverlapSphere(transform.position, spawnRadius);
+
+            if (colliders.Length <= maxObjectsNearTree)
+            {
+                base.Work(isWork, character);
+                isWorking = true;
+            } else
+            {
+                isWorking = false;
+            }
+        }
 
         public override void AfterWork()
         {

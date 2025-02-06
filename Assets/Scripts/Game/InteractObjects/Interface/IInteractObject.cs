@@ -2,7 +2,7 @@
 
 namespace InteractObjects
 {
-    interface IInteractObject
+    public interface IInteractObject
     {
         T GetObject<T>();
         void PickUp();
