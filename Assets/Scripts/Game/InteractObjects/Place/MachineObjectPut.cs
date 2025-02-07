@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace InteractObjects.Work
 {
-    public class MachineObjectPut : ObjectPlace
+    public class MachineObjectPut : MachineObjectPlace
     {
         public Action OnObjectPlace;
 
@@ -26,12 +26,7 @@ namespace InteractObjects.Work
 
         public void RemoveObjects(int objectNumber)
         {
-            for (int i = 0; i < objectNumber; i++)
-            {
-                placeStrategy.RemoveObject(i);
-            }
+            placeStrategy.RemoveObjects(objectNumber);
         }
-        public int ObjectNumber() => placeStrategy.ObjectNumber();
-        public int RemaintObjectsToFull() => placeStrategy.MaxObjects() - ObjectNumber();
     }
 }

@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2979062835892342736
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5721371421871618122}
+  m_Layer: 6
+  m_Name: PutPlace
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5721371421871618122
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2979062835892342736}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.969, y: 0, z: 1.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7578300589961441}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3640259355746744861
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55,12 +86,20 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 1192720006816430442, guid: 6160928b7eb91564e8fa6b1d9d0080f4, type: 3}
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 3647388981755759356, guid: 6160928b7eb91564e8fa6b1d9d0080f4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5721371421871618122}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2254338964568280006, guid: 6160928b7eb91564e8fa6b1d9d0080f4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 215859952496534823}
   m_SourcePrefab: {fileID: 100100000, guid: 6160928b7eb91564e8fa6b1d9d0080f4, type: 3}
+--- !u!4 &7578300589961441 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3647388981755759356, guid: 6160928b7eb91564e8fa6b1d9d0080f4, type: 3}
+  m_PrefabInstance: {fileID: 3640259355746744861}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3300515932697899483 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2254338964568280006, guid: 6160928b7eb91564e8fa6b1d9d0080f4, type: 3}
@@ -82,6 +121,7 @@ MonoBehaviour:
   placeBoundariesParent: {fileID: 3432978057002548598}
   isOnFloor: 1
   placeConfig: {fileID: 0}
+  interactPosition: {fileID: 5721371421871618122}
 --- !u!4 &3432978057002548598 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2098870676072646507, guid: 6160928b7eb91564e8fa6b1d9d0080f4, type: 3}

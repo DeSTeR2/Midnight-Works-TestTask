@@ -1,0 +1,906 @@
+fileFormatVersion: 2
+guid: c683ce85f407a094dbdc53c261d1df2a
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_0
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 844
+        width: 149
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 443d73131e8425b4989832710df732f7
+      internalID: -1972787608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_1
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 844
+        width: 150
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94bfca492d387c6429f19d5726bafafb
+      internalID: 1805364087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_2
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 844
+        width: 150
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20ee974eda47cc341a8b2358a320f209
+      internalID: 1376227928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_3
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 844
+        width: 149
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cdea2800d30b3d4fbea8f3f684f4ae1
+      internalID: -1605654167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_4
+      rect:
+        serializedVersion: 2
+        x: 682
+        y: 844
+        width: 150
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77c4278c42520e446a4d471a91b9ddfb
+      internalID: 444150424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_5
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 844
+        width: 150
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adc2b007baec3f34580e33f604dfef6f
+      internalID: 73254816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_6
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 682
+        width: 149
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5410a5e0bb6bd6143826f2010c1526e2
+      internalID: 1666844797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_7
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 682
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aafbafc2c9d1051429bd00b64f6d4944
+      internalID: -1186676272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_8
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 682
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a1a0587d0c51ed4f9ec94d3b3f72ab7
+      internalID: 2847465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_9
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 682
+        width: 149
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97634ccd9a9787749847387d6d26cb90
+      internalID: 1456024647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_10
+      rect:
+        serializedVersion: 2
+        x: 682
+        y: 682
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a667b15594820844b7e39a87f95e938
+      internalID: 710385618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_11
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 682
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6398f8492399164c9399b624171f617
+      internalID: -1141036169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_12
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 520
+        width: 149
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b24eb82bea880e443b4a89e31ddc80b5
+      internalID: 1018571511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_13
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 520
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 896b6f9304a8c864cacfad498ff57575
+      internalID: 1973686364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_14
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 520
+        width: 149
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87be6cc2e8e2d134dad790bfb348c2c5
+      internalID: 498757932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_15
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 519
+        width: 149
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 776ae7796a3150e45afecbf8293e3b04
+      internalID: -1399123986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_16
+      rect:
+        serializedVersion: 2
+        x: 682
+        y: 519
+        width: 150
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5537054eaa39394e87e82109f52d82e
+      internalID: 1328504055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_17
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 519
+        width: 150
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5be3ebd9de0dfd4caf22e2c86eab8f7
+      internalID: 1779135323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_18
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 356
+        width: 149
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36afeaaed23b5f140a84a2947a6427fa
+      internalID: -625923907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_19
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 356
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcb881b682e1e8f4ea1b03575c36cfa2
+      internalID: 856954818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_20
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 356
+        width: 150
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 516c3735762bae04b9961293313fd87b
+      internalID: 449220658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_21
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 356
+        width: 149
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5bea1217fec06b4582253bce334e2c3
+      internalID: 1240826406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_22
+      rect:
+        serializedVersion: 2
+        x: 682
+        y: 356
+        width: 150
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d150d372720a07a4387a7c97dce96d7b
+      internalID: -1619738292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_23
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 356
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf3102fd474d79741bf8c82c749b03a3
+      internalID: 318626209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_24
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 192
+        width: 149
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e91a9febdeff7a54ba1f82fb8ba7c871
+      internalID: 240912716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_25
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 192
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 338e1af8f918068438658169f2e1ce24
+      internalID: -495350336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_26
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 192
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61845f2eb1b881845bf60e7bd57f185e
+      internalID: -1148238407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_27
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 192
+        width: 149
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92a412f32877ace4496bea886eab7c2b
+      internalID: 1332885077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_28
+      rect:
+        serializedVersion: 2
+        x: 682
+        y: 192
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4973985bd9326646ba6666039644130
+      internalID: 1344837316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_29
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 192
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6428cdc1104dfe4458eab3fd2f060316
+      internalID: -377462404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_30
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 28
+        width: 149
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bda7dda4233b9f4cb5d1d33fb89f434
+      internalID: 934839603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_31
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 28
+        width: 150
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d296bf5c33ab76c4fa8e53ea714debd1
+      internalID: -687230994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_32
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 28
+        width: 149
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ee00815983ef21469e6a60eb7ab6b6d
+      internalID: 1069418738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_33
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 28
+        width: 149
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5f55d71d3fb9664ba5d41358eb34723
+      internalID: 1509130165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_34
+      rect:
+        serializedVersion: 2
+        x: 682
+        y: 28
+        width: 150
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f92364b87af3559479dc691c75457431
+      internalID: -2066804416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_35
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 28
+        width: 150
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 729301641dd7c404484146d275369d5b
+      internalID: 1915475641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_0: -1972787608
+      freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_1: 1805364087
+      freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_10: 710385618
+      freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_11: -1141036169
+      freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_12: 1018571511
+      freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_13: 1973686364
+      freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_14: 498757932
+      freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_15: -1399123986
+      freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_16: 1328504055
+      freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_17: 1779135323
+      freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_18: -625923907
+      freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_19: 856954818
+      freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_2: 1376227928
+      freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_20: 449220658
+      freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_21: 1240826406
+      freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_22: -1619738292
+      freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_23: 318626209
+      freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_24: 240912716
+      freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_25: -495350336
+      freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_26: -1148238407
+      freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_27: 1332885077
+      freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_28: 1344837316
+      freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_29: -377462404
+      freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_3: -1605654167
+      freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_30: 934839603
+      freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_31: -687230994
+      freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_32: 1069418738
+      freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_33: 1509130165
+      freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_34: -2066804416
+      freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_35: 1915475641
+      freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_4: 444150424
+      freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_5: 73254816
+      freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_6: 1666844797
+      freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_7: -1186676272
+      freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_8: 2847465
+      freepik__a-grid-of-48-colorful-square-emoji-faces-each-disp__80300_9: 1456024647
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

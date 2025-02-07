@@ -103,6 +103,14 @@ namespace Character
                     InteractObject obj = interact.GetObject<InteractObject>();
 
                     animationController.PickUp(obj.isInFloor);
+                    Vector3 rotate = obj.transform.position - transform.position;
+                    
+                    transform.forward = rotate;
+                    Quaternion rot = transform.rotation;
+                    rot = Quaternion.Euler(0, rot.eulerAngles.y, 0);
+                    transform.rotation = rot;
+
+
                     await DelaySystem.DelayFunction(delegate
                     {
                         ShowItem(obj.gameObject);
@@ -157,7 +165,7 @@ namespace Character
             animationController.WorkAnimation(animName, isWorking);
         }
 
-        private T FindObject<T>()
+        protected T FindObject<T>()
         {
             Collider[] colliders = Physics.OverlapSphere(transform.position + interactConfig.interactOffset, interactConfig.interactRadius);
 

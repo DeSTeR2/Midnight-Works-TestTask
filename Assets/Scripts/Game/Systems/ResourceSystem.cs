@@ -1,4 +1,6 @@
 ﻿using InteractObjects;
+using InteractObjects.Place;
+using InteractObjects.Work;
 using Resources;
 using System;
 using System.Collections.Generic;
@@ -11,7 +13,7 @@ namespace CustomSystems
     {
         [SerializeField] List<ResourceConfig> resources;
         [SerializeField] int spawnResourseNumberOnStart = 2;
-        [SerializeField] ObjectPlace storage;
+        [SerializeField] StorageObject storage;
 
         Dictionary<ResourceType, ObjectPool<InteractObject>> resourcesDictionary;
         Dictionary<ResourceType, Queue<InteractObject>> resourcesQueue;
@@ -29,7 +31,7 @@ namespace CustomSystems
             resourcesDictionary = new();
             resources.Sort(new ResourceComparer());
 
-            int resourseNumber = Enum.GetNames(typeof(ResourceType)).Length;
+            int resourseNumber = Enum.GetNames(typeof(ResourceType)).Length - 1;
             for (int i = 0; i < resourseNumber; i++)
             {
                 InteractObject resource = resources[i].resource;
@@ -76,6 +78,9 @@ namespace CustomSystems
         public void BackObject(InteractObject resource)
         {
             resource.gameObject.SetActive(false);
+            resource.transform.parent = null;
+            resource.transform.rotation = Quaternion.identity;
+
             ResourceType type = resource.ResourceType;
             resourcesDictionary[type].AddObject(resource);
         }

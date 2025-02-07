@@ -1,54 +1,65 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using Request;
+using RequestManagment;
 using Character.Worker;
 using System.Threading.Tasks;
 using System.Text;
+using System;
 
 namespace CustomSystems
 {
     public static class RequesSystem {
-        static Queue<Request.Request> requests = new();
+        static List<Request> requests = new();
 
         static bool gamePlay = false;
 
+        public static Action OnUpdateRequests;
+
         public static void InitSystem()
         {
-            Request.Request.OnRequestCreate += RequestCreated;
+            Request.OnRequestCreate += RequestCreated;
             gamePlay = true;
             StartPerfoming();
         }
 
         public static void Delete()
         {
-            Request.Request.OnRequestCreate -= RequestCreated;
+            Request.OnRequestCreate -= RequestCreated;
             gamePlay = false;
         }
 
         private static async void StartPerfoming()
         {
-/*            while (gamePlay)
+            while (gamePlay)
             {
                 if (requests.Count != 0)
                 {
                     await PerformeRequest();
-                } else
-                {
-                    await Task.Delay(2000);
                 }
-            }*/
+                else
+                {
+                    await Task.Delay(1000);
+                    OnUpdateRequests?.Invoke();
+                }
+            }
         }
   
-        private static void RequestCreated(Request.Request request)
+        private static void RequestCreated(Request request)
         {
-            requests.Enqueue(request);
-            PerformeRequest();
+            requests.Add(request);
+            requests.Sort(new RequestComparer());
         }
 
         private static async Task PerformeRequest()
         {
-            Request.Request request = requests.Dequeue();
+
             DeliveryWorker worker = await WorkerSystem.instance.GetWorker();
+            Request request = null;
+            while (request == null)
+            {
+                request = requests[0];
+                requests.RemoveAt(0);
+            }
             request.PerfomRequest(worker);
         }
 
@@ -56,12 +67,22 @@ namespace CustomSystems
         {
             var sb = new StringBuilder();
 
-            foreach (Request.Request request in requests)
+            foreach (Request request in requests)
             {
-                sb.AppendLine(request.ToString() + "\n");
+                sb.AppendLine(request.ToString());
             }
 
             return sb.ToString();
+        }
+    }
+
+    public class RequestComparer : IComparer<Request>
+    {
+        public int Compare(Request x, Request y)
+        {
+            if (x.priority == y.priority) return 0;
+            if (x.priority < y.priority) return 1;
+            return -1;
         }
     }
 }

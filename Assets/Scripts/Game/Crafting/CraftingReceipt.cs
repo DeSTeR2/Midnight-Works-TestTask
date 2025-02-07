@@ -15,5 +15,6 @@ namespace InteractObjects.Work
     {
         public InteractObject craftItem;
         public int count;
+        public int priority;
     }
 }

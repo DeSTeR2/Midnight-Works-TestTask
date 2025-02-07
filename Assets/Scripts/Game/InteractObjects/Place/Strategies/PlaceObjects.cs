@@ -1,6 +1,7 @@
 ﻿using CustomSystems;
+using Resources;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using UnityEditor.SearchService;
 using UnityEngine;
 
 namespace InteractObjects.Place
@@ -54,13 +55,19 @@ namespace InteractObjects.Place
             }
         }
 
-        public void RemoveObject(int i)
+        public void RemoveObjects(int objectNumber)
         {
-            if (positions[i].childCount > 0)
+            for (int i = 0; i < positions.Count; i++)
             {
-                InteractObject go = positions[i].GetChild(0).gameObject.GetComponent<InteractObject>();
-                go.transform.parent = null;
-                ResourceSystem.instance.BackObject(go);
+                if (positions[i].childCount > 0)
+                {
+                    InteractObject go = positions[i].GetChild(0).gameObject.GetComponent<InteractObject>();
+                    go.transform.parent = null;
+                    ResourceSystem.instance.BackObject(go);
+                    objectNumber--;
+                }
+
+                if (objectNumber == 0) return;
             }
         }
         public int ObjectNumber()
@@ -73,5 +80,23 @@ namespace InteractObjects.Place
             return number;
         }
         public int MaxObjects() => config.capability;
+    
+        public InteractObject FindRightResource(ResourceType resourceType)
+        {
+            for (int i=0; i < config.capability; i++)
+            {
+                if (positions[i].childCount == 1)
+                {
+                    InteractObject obj;
+                    if (positions[i].GetChild(0).gameObject.TryGetComponent<InteractObject>(out obj))
+                    {
+                        if (obj.ResourceType == resourceType) {
+                            return obj;
+                        }
+                    }
+                }
+            }
+            throw new System.Exception("There is no right resource");
+        }
     }
 }

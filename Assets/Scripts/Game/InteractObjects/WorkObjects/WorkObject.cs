@@ -12,6 +12,9 @@ namespace InteractObjects.Work
         [SerializeField] protected float workTime;
         [SerializeField] protected WorkStatus workStatus;
 
+        [Space]
+        [SerializeField] Transform workPosition;
+
         public Action onEndWork;
         public bool isWorking = false;
         public float WorkTime => workTime;
@@ -50,6 +53,8 @@ namespace InteractObjects.Work
                 workStatus.EndLoad();
             }
         }
+
+        public Vector3 GetWorkPosition() => workPosition.position;
 
         private void EndWork()
         {

@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -5047171644801003014, guid: 283cd950fe92bd04cae43c4c37469c50, type: 3}
       propertyPath: m_Radius
-      value: 0.3
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: -5047171644801003014, guid: 283cd950fe92bd04cae43c4c37469c50, type: 3}
       propertyPath: m_BaseOffset
@@ -46,7 +46,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2267747265548535315, guid: 283cd950fe92bd04cae43c4c37469c50, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.255
+      value: -12.92
       objectReference: {fileID: 0}
     - target: {fileID: 2267747265548535315, guid: 283cd950fe92bd04cae43c4c37469c50, type: 3}
       propertyPath: m_LocalPosition.y
@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2267747265548535315, guid: 283cd950fe92bd04cae43c4c37469c50, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.92
+      value: 5.87
       objectReference: {fileID: 0}
     - target: {fileID: 2267747265548535315, guid: 283cd950fe92bd04cae43c4c37469c50, type: 3}
       propertyPath: m_LocalRotation.w
@@ -130,7 +130,8 @@ MonoBehaviour:
   leftHand: {fileID: 6268477837998745449}
   rightHand: {fileID: 6260553471632417861}
   interactConfig: {fileID: 11400000, guid: 6abe11b92e4c5f04b8f5ce1eabfdbd32, type: 2}
-  distToStop: 0.15
+  distToStop: 0.8
+  requestType: 
 --- !u!4 &6268477837998745449 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2268057483210348513, guid: 283cd950fe92bd04cae43c4c37469c50, type: 3}

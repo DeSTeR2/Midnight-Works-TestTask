@@ -1,5 +1,5 @@
 ﻿using CustomSystems;
-using Request;
+using RequestManagment;
 using Resources;
 using System;
 using UnityEngine;
@@ -17,21 +17,32 @@ namespace InteractObjects.Work
         int awailableItems = 0;
         bool deliveryRequest = false;
 
+        public static Action<ResourceType> OnAwailableResource;
+        public int remainToFull;
+        public int objectToTake;
+
+        MachineRequestManager requestManager;
+
         protected override void Start()
         {
+            requestManager = new MachineRequestManager(takePlace, putPlace, receipt);
+
+            OnAwailableResource?.Invoke(receipt.craftResult.craftItem.ResourceType);
+            OnAwailableResource?.Invoke(receipt.craftFrom.craftItem.ResourceType);
+
             base.Start();
             putPlace.SetResource(receipt.craftFrom.craftItem.ResourceType);
-            putPlace.OnObjectPlace += PutObject;
         }
 
-        private void PutObject()
+        private void Update()
         {
-            awailableItems++;
+            remainToFull = putPlace.RemaintObjectsToFull();
+            objectToTake = takePlace.ObjectNumber();
         }
 
         public override void Work(bool isWork, Character.Character character)
         {
-            if (awailableItems >= receipt.craftFrom.count && isWork && workingCharacter == null)
+            if (putPlace.ObjectNumber() >= receipt.craftFrom.count && isWork && workingCharacter == null)
             {
                 deliveryRequest = false;
                 this.workingCharacter = character;
@@ -42,7 +53,7 @@ namespace InteractObjects.Work
             {
                 if (awailableItems < receipt.craftFrom.count)
                 {
-                    DeliveryRequest(putPlace.RemaintObjectsToFull());
+                    DeliveryRequest();
                 }
 
                 isWorking = false;
@@ -57,38 +68,26 @@ namespace InteractObjects.Work
             {
                 awailableItems -= receipt.craftFrom.count;
                 putPlace.RemoveObjects(receipt.craftFrom.count);
-                TakeRequest(receipt.craftResult.count);
+                TakeRequest();
             }
             base.AfterWork();
         }
 
-        private async void TakeRequest(int objectNumber)
+        public async void TakeRequest()
         {
-            for (int i = 0; i < objectNumber; i++)
+            await DelaySystem.DelayFunction(delegate
             {
-                await DelaySystem.DelayFunction(delegate {
-                    new TakeRequest(takePlace.transform.position);
-                }, .5f);
-            }
+                requestManager.CreateTakeRequest();
+            }, .5f);
+
         }
 
-        private async void DeliveryRequest(int objectNumber)
+        public async void DeliveryRequest()
         {
-            if (!deliveryRequest)
+            await DelaySystem.DelayFunction(delegate
             {
-                deliveryRequest = true;
-                for (int i = 0; i < objectNumber; i++)
-                {
-                    await DelaySystem.DelayFunction(delegate {
-                        new DeliveryRequest(receipt.craftFrom.craftItem.ResourceType, putPlace.transform.position);
-                    }, .5f);
-                }
-            }
-        }
-
-        private void OnDestroy()
-        {
-            putPlace.OnObjectPlace -= PutObject;
+                requestManager.CreateDeliveryRequest();
+            }, .5f);
         }
     }
 }

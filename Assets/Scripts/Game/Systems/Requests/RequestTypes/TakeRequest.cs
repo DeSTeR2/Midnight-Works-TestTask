@@ -1,20 +1,21 @@
 ﻿using Character.Worker;
 using CustomSystems;
-using Resources;
-using System;
+using InteractObjects.Work;
+using InteractObjects.Work.Actions;
 using UnityEngine;
 
-namespace Request
+namespace RequestManagment
 {
     public class TakeRequest : Request
     {
-        public TakeRequest(Vector3 position) : base(position) {}
+        public TakeRequest(int priority, Vector3 position) : base(priority, position) {}
 
         public override void PerfomRequest(DeliveryWorker worker)
         {
-            worker.AddPosition(requestPosition);
-            worker.AddPosition(ResourceSystem.instance.GetStoragePosition());
-            worker.StartWork();
+            worker.AddAction(new Action(requestPosition, ActionType.Take));
+            worker.AddAction(new Action(ResourceSystem.instance.GetStoragePosition(), ActionType.Place));
+            worker.StartWork(this);
+            isPerfoming = true;
         }
 
         public override string ToString()

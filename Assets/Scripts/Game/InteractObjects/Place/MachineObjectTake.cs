@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace InteractObjects.Work
 {
-    public class MachineObjectTake : ObjectPlace
+    public class MachineObjectTake : MachineObjectPlace
     {
         public override bool CanPlace(ResourceType type)
         {

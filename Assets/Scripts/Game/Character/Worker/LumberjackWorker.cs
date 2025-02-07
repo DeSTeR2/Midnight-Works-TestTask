@@ -5,35 +5,14 @@ using UnityEngine;
 
 namespace Character.Worker
 {
-    public class LumberjackWorker : AIWalkable
+    public class LumberjackWorker : StationaryWorker
     {
         [SerializeField] GameObject axe;
-        [SerializeField] GameObject workOblect;
 
-        ChopTreeWork work;
-
-        protected override void Start()
+        protected async override void ReWork()
         {
-            base.Start();
-            AssignWalkTarget(workOblect);
-        }
-
-        protected override void CompletePath()
-        {
-            base.CompletePath();
-            ReWork();
-        }
-
-        private async void ReWork()
-        {
-            await DelaySystem.DelayFunction(delegate { }, .5f);
-
-            isWorking = false;
-            if (work != null)
-            {
-                work.onEndWork -= ReWork;
-            }
-
+            await Waiter();
+            base.ReWork();
             work = TryWork<ChopTreeWork>();
 
             if (work != null && work.isWorking)

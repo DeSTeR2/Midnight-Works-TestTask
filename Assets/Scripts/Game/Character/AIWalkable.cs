@@ -1,4 +1,6 @@
 ﻿using CustomSystems;
+using System;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 using static UnityEngine.GraphicsBuffer;
@@ -13,6 +15,9 @@ namespace Character.Worker
 
         bool isPathCompleted = false;
         bool isAllowedToMove = false;
+        Vector3 moveTarget;
+
+        public Action<AIWalkable> OnPathComplete; 
 
         protected override void Start()
         {
@@ -20,9 +25,9 @@ namespace Character.Worker
             agent = GetComponent<NavMeshAgent>();
         }
 
-        private void FixedUpdate()
+        protected virtual void FixedUpdate()
         {
-            if (agent.destination == null || isPathCompleted || !isAllowedToMove)
+            if (agent.destination == null || isPathCompleted || !isAllowedToMove || moveTarget == Vector3.zero)
             {
                 SetMoveVector(Vector3.zero);
                 return;
@@ -32,7 +37,7 @@ namespace Character.Worker
             SetMoveVector(moveDir);
 
 
-            if (agent.remainingDistance < distToStop)
+            if ((transform.position - moveTarget).sqrMagnitude < distToStop)
             {
                 CompletePath();
             }
@@ -42,21 +47,30 @@ namespace Character.Worker
         {
             SetMoveVector(Vector3.zero);
             isPathCompleted = true;
+            OnPathComplete?.Invoke(this);
         }
 
-        public void AssignWalkTarget(Vector3 position)
+        public async Task AssignWalkTarget(Vector3 position)
         {
+            if (this == null) return;
+
+            if (agent == null)
+            {
+                Start();
+            }
+
             agent.SetDestination(position);
+            moveTarget = position;
             isPathCompleted = false;
 
-            DelaySystem.DelayFunction(delegate {
+            await DelaySystem.DelayFunction(delegate {
                 isAllowedToMove = true;
             }, .5f);
         }
 
-        public void AssignWalkTarget(GameObject target)
+        public async Task AssignWalkTarget(GameObject target)
         {
-            AssignWalkTarget(target.transform.position);
+            await AssignWalkTarget(target.transform.position);
         }
     }
 }
