@@ -1,9 +1,6 @@
-﻿using Character;
-using CustomSystems;
-using Resources;
+﻿using CustomSystems;
 using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace InteractObjects.Work
 {
@@ -17,7 +14,7 @@ namespace InteractObjects.Work
 
         public Action onEndWork;
         public bool isWorking = false;
-        public float WorkTime => workTime;
+        public float WorkTime { get => workTime; set => workTime = value; }
 
         protected LoadSystem loadSystem;
         protected Character.Character workingCharacter;

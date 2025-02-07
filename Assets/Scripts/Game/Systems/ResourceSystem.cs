@@ -27,6 +27,8 @@ namespace CustomSystems
 
         private void Start()
         {
+            resources.Synchronize();
+
             resourcesQueue = new();
             resourcesDictionary = new();
 
@@ -105,6 +107,7 @@ namespace CustomSystems
             }
         }
 
+        public StorageObject GetStorageObject() => storage;
         public Vector3 GetStoragePosition() => storage.transform.position;
     }
 }

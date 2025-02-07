@@ -9,15 +9,17 @@ namespace InteractObjects.Work
 {
     public class AcounterWork : WorkObject
     {
-        [SerializeField] StorageObject storage;
         [SerializeField] Transform customerPositionsParent;
 
+        StorageObject storage;
         CustomerQueue customerQueue;
 
         protected override void Start()
         {
             base.Start();
             customerQueue = new CustomerQueue(customerPositionsParent);
+
+            storage = ResourceSystem.instance.GetStorageObject();
         }
 
         public override void AfterWork()

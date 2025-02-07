@@ -11,9 +11,9 @@ namespace InteractObjects.Place
         List<Transform> positions;
         int index = 0;
 
-        ObjectPlaceConfig config;
+        int capability;
 
-        public PlaceObjects(Transform positions, ObjectPlaceConfig config)
+        public PlaceObjects(Transform positions, int capability)
         {
             this.positions = new();
             foreach (Transform t in positions)
@@ -21,7 +21,7 @@ namespace InteractObjects.Place
                 this.positions.Add(t);
             }
 
-            this.config = config;
+            this.capability = capability;
         }
 
         public bool Place(GameObject go)
@@ -40,7 +40,7 @@ namespace InteractObjects.Place
         public bool CanPlace(int objectNumber = 1)
         {
             UpdateIndex();
-            if (index + objectNumber <= positions.Count && index + objectNumber <= config.capability) return true;
+            if (index + objectNumber <= positions.Count && index + objectNumber <= capability) return true;
             return false;
         }
 
@@ -73,17 +73,17 @@ namespace InteractObjects.Place
         public int ObjectNumber()
         {
             int number = 0;
-            for (int i = 0; i < config.capability; i++)
+            for (int i = 0; i < capability; i++)
             {
                 number += (positions[i].childCount == 1 ? 1 : 0);
             }
             return number;
         }
-        public int MaxObjects() => config.capability;
+        public int MaxObjects() => capability;
     
         public InteractObject FindRightResource(ResourceType resourceType)
         {
-            for (int i=0; i < config.capability; i++)
+            for (int i=0; i < capability; i++)
             {
                 if (positions[i].childCount == 1)
                 {

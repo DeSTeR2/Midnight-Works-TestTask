@@ -89,5 +89,9 @@ namespace InteractObjects.Work
                 requestManager.CreateDeliveryRequest();
             }, .5f);
         }
+
+        public void SetPutPlace(int capasity) => putPlace.SetCapability(capasity);
+        public void SetTakePlace(int capasity) => takePlace.SetCapability(capasity);
+
     }
 }

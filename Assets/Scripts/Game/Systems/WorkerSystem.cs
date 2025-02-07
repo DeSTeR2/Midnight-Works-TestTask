@@ -7,8 +7,9 @@ namespace CustomSystems
 {
     public class WorkerSystem : MonoBehaviour
     {
-        public List<DeliveryWorker> workerList;
+        [SerializeField] Transform deliveryWorkerParent;
 
+        List<DeliveryWorker> workerList;
         Queue<DeliveryWorker> freeWorkers = new();
 
         public static WorkerSystem instance;
@@ -16,15 +17,28 @@ namespace CustomSystems
         private void Awake()
         {
             instance = this;
+            for (int i = 0; i < deliveryWorkerParent.childCount; i++)
+            {
+                DeliveryWorker worker = deliveryWorkerParent.GetChild(i).GetComponent<DeliveryWorker>();
+                workerList.Add(worker);
+                worker.gameObject.SetActive(false);
+            }
         }
 
         private void Start()
         {
-            foreach (var worker in workerList) { 
-                freeWorkers.Enqueue(worker);
-            }
-
             DeliveryWorker.OnWorkerFree += BackWorker;
+        }
+
+        public void AssignWorkers(int workerCount)
+        {
+            for (int i = 0; i < workerList.Count; i++) { 
+                if (workerList[i].gameObject.activeInHierarchy == false)
+                {
+                    workerList[i].gameObject.SetActive(true);
+                    freeWorkers.Enqueue(workerList[i]);
+                }
+            }
         }
 
         public async Task<DeliveryWorker> GetWorker()

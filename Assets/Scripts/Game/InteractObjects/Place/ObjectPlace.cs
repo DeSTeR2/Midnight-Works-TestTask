@@ -11,7 +11,7 @@ namespace InteractObjects
         [SerializeField] bool isOnFloor;
 
         [Space]
-        [SerializeField] ObjectPlaceConfig placeConfig;
+        [SerializeField] int capability;
 
         protected PlaceObjects placeStrategy;
 
@@ -24,7 +24,7 @@ namespace InteractObjects
 
         protected void InitalSetup()
         {
-            placeStrategy = new(placePositionsParent, placeConfig);
+            placeStrategy = new(placePositionsParent, capability);
 
             LineRenderer lineRenderer = gameObject.GetComponent<LineRenderer>();
             float horizontalSize = 0;
@@ -59,5 +59,6 @@ namespace InteractObjects
         public virtual bool CanPlace(ResourceType type) => placeStrategy.CanPlace();
         public int ObjectNumber() => placeStrategy.ObjectNumber();
         public int RemaintObjectsToFull() => placeStrategy.MaxObjects() - ObjectNumber();
+        public void SetCapability(int capability) => this.capability = capability;
     }
-}
+}   

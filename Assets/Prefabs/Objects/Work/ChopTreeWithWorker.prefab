@@ -1,0 +1,201 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &650640957358620102
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5351203490005762277}
+  - component: {fileID: 6014844535835411096}
+  m_Layer: 0
+  m_Name: ChopTreeWithWorker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5351203490005762277
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650640957358620102}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2481960869807891585}
+  - {fileID: 1711135145797907453}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6014844535835411096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650640957358620102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87071ec293eb2ac40b53e5dd5ff8302a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  workObject: {fileID: 5480987495852792642}
+  worker: {fileID: 7485266540970596122}
+  workConfig: {fileID: 11400000, guid: bf73550bb23d51045848956fb356dcb5, type: 2}
+--- !u!1001 &5437067599256087790
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5351203490005762277}
+    m_Modifications:
+    - target: {fileID: 3212573338209270772, guid: fc8c79f008b5af0408032592ef9fab9c, type: 3}
+      propertyPath: workOblect
+      value: 
+      objectReference: {fileID: 5480987495852792642}
+    - target: {fileID: 6683927784875647977, guid: fc8c79f008b5af0408032592ef9fab9c, type: 3}
+      propertyPath: m_Name
+      value: ChopTreeWorker Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686566121489407763, guid: fc8c79f008b5af0408032592ef9fab9c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -17.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686566121489407763, guid: fc8c79f008b5af0408032592ef9fab9c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.3842497
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686566121489407763, guid: fc8c79f008b5af0408032592ef9fab9c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 9.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686566121489407763, guid: fc8c79f008b5af0408032592ef9fab9c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686566121489407763, guid: fc8c79f008b5af0408032592ef9fab9c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686566121489407763, guid: fc8c79f008b5af0408032592ef9fab9c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686566121489407763, guid: fc8c79f008b5af0408032592ef9fab9c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686566121489407763, guid: fc8c79f008b5af0408032592ef9fab9c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686566121489407763, guid: fc8c79f008b5af0408032592ef9fab9c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686566121489407763, guid: fc8c79f008b5af0408032592ef9fab9c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fc8c79f008b5af0408032592ef9fab9c, type: 3}
+--- !u!4 &1711135145797907453 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6686566121489407763, guid: fc8c79f008b5af0408032592ef9fab9c, type: 3}
+  m_PrefabInstance: {fileID: 5437067599256087790}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7485266540970596122 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3212573338209270772, guid: fc8c79f008b5af0408032592ef9fab9c, type: 3}
+  m_PrefabInstance: {fileID: 5437067599256087790}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 600854c31573855478228aded2b41666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &7693572120565981173
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5351203490005762277}
+    m_Modifications:
+    - target: {fileID: 5239020443662203764, guid: 19eaedc85a000d04992b217b3390d48a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -14.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 5239020443662203764, guid: 19eaedc85a000d04992b217b3390d48a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5239020443662203764, guid: 19eaedc85a000d04992b217b3390d48a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 5239020443662203764, guid: 19eaedc85a000d04992b217b3390d48a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5239020443662203764, guid: 19eaedc85a000d04992b217b3390d48a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5239020443662203764, guid: 19eaedc85a000d04992b217b3390d48a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5239020443662203764, guid: 19eaedc85a000d04992b217b3390d48a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5239020443662203764, guid: 19eaedc85a000d04992b217b3390d48a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5239020443662203764, guid: 19eaedc85a000d04992b217b3390d48a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5239020443662203764, guid: 19eaedc85a000d04992b217b3390d48a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8747174305001951273, guid: 19eaedc85a000d04992b217b3390d48a, type: 3}
+      propertyPath: m_Name
+      value: ChopTreeWork
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 19eaedc85a000d04992b217b3390d48a, type: 3}
+--- !u!4 &2481960869807891585 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5239020443662203764, guid: 19eaedc85a000d04992b217b3390d48a, type: 3}
+  m_PrefabInstance: {fileID: 7693572120565981173}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5480987495852792642 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2798263699700630711, guid: 19eaedc85a000d04992b217b3390d48a, type: 3}
+  m_PrefabInstance: {fileID: 7693572120565981173}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d71485b0b61008f41815278e34a2e162, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
