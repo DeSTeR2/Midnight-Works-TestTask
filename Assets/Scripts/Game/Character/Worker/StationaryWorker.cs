@@ -18,6 +18,10 @@ namespace Character.Worker
         protected override void Start()
         {
             base.Start();
+        }
+
+        private void OnEnable()
+        {
             AssignWalkTarget(workOblect.GetWorkPosition());
         }
 

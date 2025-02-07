@@ -35,6 +35,8 @@ namespace Character
             float z = Input.GetAxis("Vertical");
 
             SetMoveVector(new Vector3(x, 0, z));
+
+            transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
         }
 
         protected void Work()

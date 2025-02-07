@@ -19,4 +19,4 @@ MonoBehaviour:
   craftResult:
     craftItem: {fileID: 757396471895702042, guid: 4eeeaadeaf0ca294986a48738a29880b, type: 3}
     count: 1
-    priority: 0
+    priority: 90

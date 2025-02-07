@@ -25,6 +25,7 @@ namespace Resources
         Plank,
         Box, 
         Chair,
-        None
+        None,
+        Backet
     }
 }

@@ -38,6 +38,7 @@ namespace Data
     public class StorageData : IData
     {
         public int capability = 20;
+        public int maxCapability = 242;
 
         public void Copy(IData data)
         {
