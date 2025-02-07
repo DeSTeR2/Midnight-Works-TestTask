@@ -1,6 +1,8 @@
 ﻿using CustomSystems;
 using RequestManagment;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -69,28 +71,44 @@ namespace InteractObjects.Work
                 deliveryRequests.Remove((DeliveryRequest)request);
             }
 
-            ManageAllRequests();
             request.OnRequestDestroy -= RequestDeleted;
         }
 
-        private void ManageAllRequests()
+        private async void ManageAllRequests()
         {
-            ManageRequests(takeRequests, takePlace.ObjectNumber(), CreateTakeRequest);
-            ManageRequests(deliveryRequests, deliveryPlace.RemaintObjectsToFull(), CreateDeliveryRequest);
+            int targetTakeCount = takePlace.ObjectNumber();
+            int targetDeliveryCount = deliveryPlace.RemaintObjectsToFull();
+
+            Task takeTask = ManageRequestsAsync(takeRequests, targetTakeCount, CreateTakeRequest);
+            Task deliveryTask = ManageRequestsAsync(deliveryRequests, targetDeliveryCount, CreateDeliveryRequest);
+
+            await Task.WhenAll(takeTask, deliveryTask);
         }
 
-        private void ManageRequests<T>(List<T> requests, int numberToCreate, CreateFunction createFunction) where T : Request
+        private async Task ManageRequestsAsync<T>(List<T> requests, int numberToCreate, CreateFunction createFunction) where T : Request
         {
-            int reqCount = requests.Count;
-            for (int i=0; i< reqCount; i++)
+            await Task.Factory.StartNew(() =>
             {
-                requests[0].Dispose();
-                requests.RemoveAt(0);
-            }
+                lock (requests)
+                {
+                    int reqCount = requests.Count;
+                    for (int i = 0; i < reqCount; i++)
+                    {
+                        if (requests.Count > 0 && requests[0] != null)
+                        {
+                            requests[0].Dispose();
+                        }
+                    }
+                }
+            }, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.FromCurrentSynchronizationContext());
 
-            for (int i=0; i<numberToCreate;i++) {
-                createFunction.Invoke();
-            }
+            await Task.Factory.StartNew(() =>
+            {
+                for (int i = 0; i < numberToCreate; i++)
+                {
+                    createFunction.Invoke();
+                }
+            }, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.FromCurrentSynchronizationContext());
         }
 
         private void TakeManagment(int remainObjects, List<TakeRequest> requests)

@@ -14,7 +14,7 @@ namespace CustomSystems
         static bool gamePlay = false;
 
         public static Action OnUpdateRequests;
-
+        static float timer = 0;
         public static void InitSystem()
         {
             Request.OnRequestCreate += RequestCreated;
@@ -36,10 +36,15 @@ namespace CustomSystems
                 {
                     await PerformeRequest();
                 }
-                else
+                
+
+                await Task.Delay(1000);
+                timer += 1;
+                if (timer >= 20)
                 {
-                    await Task.Delay(1000);
+                    Debug.Log("Requests refreshed!");
                     OnUpdateRequests?.Invoke();
+                    timer = 0;
                 }
             }
         }

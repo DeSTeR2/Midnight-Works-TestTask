@@ -11,7 +11,7 @@ namespace CustomSystems
 {
     public class ResourceSystem : MonoBehaviour
     {
-        [SerializeField] List<ResourceConfig> resources;
+        [SerializeField] DictionaryCustom<ResourceType, ResourceConfig> resources;
         [SerializeField] int spawnResourseNumberOnStart = 2;
         [SerializeField] StorageObject storage;
 
@@ -29,13 +29,12 @@ namespace CustomSystems
         {
             resourcesQueue = new();
             resourcesDictionary = new();
-            resources.Sort(new ResourceComparer());
 
             int resourseNumber = Enum.GetNames(typeof(ResourceType)).Length - 1;
             for (int i = 0; i < resourseNumber; i++)
             {
-                InteractObject resource = resources[i].resource;
                 ResourceType resourseType = (ResourceType)i;
+                InteractObject resource = resources[resourseType].resource;
 
                 ObjectPool<InteractObject> objectPool = new ObjectPool<InteractObject>(resource);
                 Queue<InteractObject> queue = new();
@@ -54,6 +53,8 @@ namespace CustomSystems
                 objectPool.OnPoolIsEmpty += SpawnObject;
             }
         }
+
+        public int GetResourcePrice(ResourceType type) => resources[type].price;
 
         public InteractObject RequestSpawnResource(ResourceType resourceType, Vector3 position, Quaternion rotation, bool isOnFloor)
         {
@@ -105,18 +106,5 @@ namespace CustomSystems
         }
 
         public Vector3 GetStoragePosition() => storage.transform.position;
-    }
-    public class ResourceComparer : IComparer<ResourceConfig>
-    {
-        public int Compare(ResourceConfig x, ResourceConfig y)
-        {
-            int xRes = (int)x.resourceType;
-            int yRes = (int)y.resourceType;
-
-            if (xRes > yRes) return 1;
-            if (xRes < yRes) return -1;
-            return 0;
-        }
-
     }
 }

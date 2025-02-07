@@ -2,6 +2,8 @@
 using CustomSystems;
 using InteractObjects.Work;
 using InteractObjects.Work.Actions;
+using System.ComponentModel.Design;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace RequestManagment
@@ -12,6 +14,8 @@ namespace RequestManagment
 
         public override void PerfomRequest(DeliveryWorker worker)
         {
+            if (this == null) return;
+
             worker.AddAction(new Action(requestPosition, ActionType.Take));
             worker.AddAction(new Action(ResourceSystem.instance.GetStoragePosition(), ActionType.Place));
             worker.StartWork(this);

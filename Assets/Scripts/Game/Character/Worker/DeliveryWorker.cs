@@ -23,6 +23,8 @@ namespace Character.Worker
         InteractObjects.Work.Actions.Action currentAction;
         Request currentRequest;
 
+        int redoTimes = 0;
+
         protected override async void CompletePath()
         {
             base.CompletePath();
@@ -51,11 +53,18 @@ namespace Character.Worker
             NextPosition();
             requestType = req.ToString();
             currentRequest = req;
-            currentRequest.OnRequestDestroy += WorkerFree;
         }
 
         private async void ReDoAction()
         {
+            redoTimes++;
+            if (redoTimes == 4)
+            {
+                WorkerFree(currentRequest);
+                currentRequest.Dispose();
+                return;
+            }
+
             await AssignWalkTarget(currentAction.position);
         }
 
@@ -74,10 +83,9 @@ namespace Character.Worker
 
         private void WorkerFree(Request request)
         {
+            redoTimes = 0;
             OnWorkerFree?.Invoke(this);
             requestType = string.Empty;
-
-            request.OnRequestDestroy -= WorkerFree;
         }
 
         protected async Task<bool> TakeObject(ResourceType resourceType)
