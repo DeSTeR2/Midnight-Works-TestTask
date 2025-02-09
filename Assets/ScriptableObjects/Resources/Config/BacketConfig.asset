@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a743d447e476a554da8257e488bbfd21, type: 3}
   m_Name: BacketConfig
   m_EditorClassIdentifier: 
-  resource: {fileID: -7113081958323683389, guid: 162ba4033dd1d114eba0dbae3ca6fe58, type: 3}
+  resource: {fileID: 5960792156955331424, guid: c698a157c337ca248be6e9ee3746712f, type: 3}
   resourceType: 5
-  price: 0
+  price: 60

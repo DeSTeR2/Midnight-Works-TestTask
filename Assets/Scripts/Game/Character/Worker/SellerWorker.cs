@@ -6,7 +6,7 @@ namespace Character.Worker
 {
     public class SellerWorker : StationaryWorker
     {
-        protected override void ReWork()
+        protected async override void ReWork()
         {
             base.ReWork();
             work = TryWork<AcounterWork>();
@@ -19,7 +19,7 @@ namespace Character.Worker
             }
             else
             {
-                DelaySystem.DelayFunction(ReWork, 3f);
+                await DelaySystem.DelayFunction(ReWork, 3f);
             }
         }
     }

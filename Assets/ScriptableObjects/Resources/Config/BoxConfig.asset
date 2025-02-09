@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resource: {fileID: 757396471895702042, guid: 4eeeaadeaf0ca294986a48738a29880b, type: 3}
   resourceType: 2
-  price: 0
+  price: 40

@@ -83,10 +83,6 @@ namespace Utils
         public static bool Load<T, U>(string fileName, ref U toAssign) where U : ILoadable where T : IData
         {
             T data = Load<T>(fileName);
-            if (data == null) {
-                return false;
-            }
-
             toAssign.Assign(data);
             return true;
         }

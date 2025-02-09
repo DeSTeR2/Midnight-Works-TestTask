@@ -13,7 +13,6 @@ namespace Data.Assigner
         private void Start()
         {
             Assign();
-
             workConfig.OnConfigChanged += Assign;
         }
 

@@ -40,9 +40,8 @@ namespace CustomSystems
 
                 await Task.Delay(1000);
                 timer += 1;
-                if (timer >= 20)
+                if (timer >= 60)
                 {
-                    Debug.Log("Requests refreshed!");
                     OnUpdateRequests?.Invoke();
                     timer = 0;
                 }
@@ -57,7 +56,6 @@ namespace CustomSystems
 
         private static async Task PerformeRequest()
         {
-
             DeliveryWorker worker = await WorkerSystem.instance.GetWorker();
             Request request = null;
             while (request == null)
@@ -66,18 +64,6 @@ namespace CustomSystems
                 requests.RemoveAt(0);
             }
             request.PerfomRequest(worker);
-        }
-
-        public static string Requests()
-        {
-            var sb = new StringBuilder();
-
-            foreach (Request request in requests)
-            {
-                sb.AppendLine(request.ToString());
-            }
-
-            return sb.ToString();
         }
     }
 

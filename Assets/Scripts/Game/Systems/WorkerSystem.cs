@@ -9,7 +9,7 @@ namespace CustomSystems
     {
         [SerializeField] Transform deliveryWorkerParent;
 
-        List<DeliveryWorker> workerList;
+        List<DeliveryWorker> workerList = new();
         Queue<DeliveryWorker> freeWorkers = new();
 
         public static WorkerSystem instance;
@@ -28,11 +28,17 @@ namespace CustomSystems
         private void Start()
         {
             DeliveryWorker.OnWorkerFree += BackWorker;
+
+            for (int i = 0; i < workerList.Count; i++)
+            {
+                workerList[i].gameObject.SetActive(false);
+            }
+            AssignWorkers(20);
         }
 
         public void AssignWorkers(int workerCount)
         {
-            for (int i = 0; i < workerList.Count; i++) { 
+            for (int i = 0; i < workerCount; i++) { 
                 if (workerList[i].gameObject.activeInHierarchy == false)
                 {
                     workerList[i].gameObject.SetActive(true);

@@ -3,7 +3,6 @@ using System;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEngine.GraphicsBuffer;
 
 namespace Character.Worker
 {
@@ -23,9 +22,11 @@ namespace Character.Worker
         {
             base.Start();
             agent = GetComponent<NavMeshAgent>();
+
+            GlobalTicker.OnTick += OnTick;
         }
 
-        protected virtual void FixedUpdate()
+        protected virtual void OnTick()
         {
             if (agent.destination == null || isPathCompleted || !isAllowedToMove || moveTarget == Vector3.zero)
             {
@@ -71,6 +72,11 @@ namespace Character.Worker
         public async Task AssignWalkTarget(GameObject target)
         {
             await AssignWalkTarget(target.transform.position);
+        }
+
+        private void OnDestroy()
+        {
+            GlobalTicker.OnTick += OnTick;
         }
     }
 }

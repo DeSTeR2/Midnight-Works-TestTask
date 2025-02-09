@@ -1,5 +1,6 @@
 ﻿using InteractObjects;
 using InteractObjects.Work;
+using Unity.Jobs.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +13,8 @@ namespace Character
 
         [SerializeField] GameObject axe;
 
+        string Horizontal = "Horizontal";
+        string Vertical = "Vertical";
         protected override void Start()
         {
             base.Start();
@@ -31,8 +34,8 @@ namespace Character
         }
         private void Update()
         {
-            float x = Input.GetAxis("Horizontal");
-            float z = Input.GetAxis("Vertical");
+            float x = Input.GetAxis(Horizontal);
+            float z = Input.GetAxis(Vertical);
 
             SetMoveVector(new Vector3(x, 0, z));
 
@@ -59,6 +62,19 @@ namespace Character
                 transform.forward = obj.transform.position;
                 return;
             }
+
+            obj = TryWork<AcounterWork>();
+            if (obj)
+            {
+                WorkAnimation(CharacterAnimations.MachineWorking);
+                transform.forward = obj.transform.position;
+                return;
+            }
+        }
+
+        private void LateUpdate()
+        {
+            UpdateCarryPoint();
         }
 
         public override void EndWork()

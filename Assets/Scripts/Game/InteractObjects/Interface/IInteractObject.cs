@@ -8,6 +8,6 @@ namespace InteractObjects
     {
         T GetObject<T>();
         void PickUp();
-        void PutDown();
+        void PutDown(bool backToQueue);
     }
 }

@@ -9,7 +9,7 @@ namespace Data
     {
         public string FileName => "Balance.json";
 
-        public BalanceData balanceData = new();
+        public BalanceData balanceData;
 
         public static Action<int> OnBalanceChange;
 
@@ -25,6 +25,7 @@ namespace Data
 
         public void Assign<T>(T data) where T : IData
         {
+            balanceData = new();
             balanceData.Copy(data);
         }
 

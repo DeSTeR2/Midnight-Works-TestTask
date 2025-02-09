@@ -24,7 +24,7 @@ namespace Character.Worker
             } else
             {
                 axe.SetActive(true);
-                DelaySystem.DelayFunction(ReWork, 3f);
+                await DelaySystem.DelayFunction(ReWork, 3f);
             }
         }
 

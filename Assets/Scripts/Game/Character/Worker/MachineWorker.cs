@@ -32,7 +32,7 @@ namespace Character.Worker
             }
             else
             {
-                DelaySystem.DelayFunction(ReWork, 3f);
+                await DelaySystem.DelayFunction(ReWork, 3f);
             }
         }
     }

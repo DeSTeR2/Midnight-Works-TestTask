@@ -32,27 +32,31 @@ namespace CustomSystems
             resourcesQueue = new();
             resourcesDictionary = new();
 
-            int resourseNumber = Enum.GetNames(typeof(ResourceType)).Length - 1;
+            int resourseNumber = Enum.GetNames(typeof(ResourceType)).Length;
             for (int i = 0; i < resourseNumber; i++)
             {
                 ResourceType resourseType = (ResourceType)i;
-                InteractObject resource = resources[resourseType].resource;
-
-                ObjectPool<InteractObject> objectPool = new ObjectPool<InteractObject>(resource);
-                Queue<InteractObject> queue = new();
-
-                for (int j = 0; j < spawnResourseNumberOnStart; j++)
+                if (resourseType != ResourceType.None)
                 {
-                    InteractObject res = Instantiate(resource);
-                    objectPool.AddObject(res);
-                    res.gameObject.SetActive(false);
 
-                    queue.Enqueue(res);
+                    InteractObject resource = resources[resourseType].resource;
+
+                    ObjectPool<InteractObject> objectPool = new ObjectPool<InteractObject>(resource);
+                    Queue<InteractObject> queue = new();
+
+                    for (int j = 0; j < spawnResourseNumberOnStart; j++)
+                    {
+                        InteractObject res = Instantiate(resource);
+                        objectPool.AddObject(res);
+                        res.gameObject.SetActive(false);
+
+                        queue.Enqueue(res);
+                    }
+
+                    resourcesQueue[resourseType] = queue;
+                    resourcesDictionary[resourseType] = objectPool;
+                    objectPool.OnPoolIsEmpty += SpawnObject;
                 }
-
-                resourcesQueue[resourseType] = queue;
-                resourcesDictionary[resourseType] = objectPool;
-                objectPool.OnPoolIsEmpty += SpawnObject;
             }
         }
 
@@ -86,6 +90,12 @@ namespace CustomSystems
 
             ResourceType type = resource.ResourceType;
             resourcesDictionary[type].AddObject(resource);
+            BackResourceToQueue(resource);
+        }
+
+        public void BackResourceToQueue(InteractObject resource)
+        {
+            resourcesQueue[resource.ResourceType].Enqueue(resource);
         }
 
         public async Task<Vector3> GetResourcePosition(ResourceType resourceType)
@@ -106,6 +116,10 @@ namespace CustomSystems
                 await Task.Delay(1);
             }
         }
+
+        public int GetPrice(ResourceType resourceType) {
+            return resources[resourceType].price;
+        } 
 
         public StorageObject GetStorageObject() => storage;
         public Vector3 GetStoragePosition() => storage.transform.position;

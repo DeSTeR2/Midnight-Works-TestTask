@@ -25,7 +25,7 @@ namespace Character
 
         protected IInteractObject carryObject;
 
-        void Awake()
+        protected virtual void Awake()
         {
             animator = GetComponent<Animator>();
         }
@@ -79,7 +79,7 @@ namespace Character
 
                     await DelaySystem.DelayFunction(delegate
                     {
-                        carryObject.PutDown();
+                        carryObject.PutDown(false);
                         interact.PutObject(obj.gameObject);
                         carryObject = null;
                     }, .5f);
@@ -138,15 +138,15 @@ namespace Character
             }
         }
 
-        protected void DropObject()
+        protected async void DropObject()
         {
             if (carryObject != null && animationController.State == CharacterState.Carring)
             {
                 animationController.PutDown(true);
 
-                DelaySystem.DelayFunction(delegate
+                await DelaySystem.DelayFunction(delegate
                 {
-                    carryObject.PutDown();
+                    carryObject.PutDown(true);
                     carryObject = null;
                 }, .55f);
             }
@@ -169,9 +169,10 @@ namespace Character
         {
             Collider[] colliders = Physics.OverlapSphere(transform.position + interactConfig.interactOffset, interactConfig.interactRadius);
 
-            foreach (Collider collider in colliders)
+            for (int i = 0; i < colliders.Length; i++)
             {
-                GameObject obj = collider.gameObject;
+                Collider col = colliders[i];
+                GameObject obj = col.gameObject;
                 if (obj.TryGetComponent(out T component))
                 {
                     return component;
@@ -191,12 +192,7 @@ namespace Character
             }
         }
 
-        private void LateUpdate()
-        {
-            UpdateCarryPoint();
-        }
-
-        private void UpdateCarryPoint()
+        protected void UpdateCarryPoint()
         {
             Vector3 position = (leftHand.transform.position + rightHand.transform.position) / 2;
             carryPoint.position = position;

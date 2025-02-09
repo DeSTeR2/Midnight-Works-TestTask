@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5351203490005762277}
-  - component: {fileID: 6014844535835411096}
   m_Layer: 0
   m_Name: ChopTreeWithWorker
   m_TagString: Untagged
@@ -34,21 +33,6 @@ Transform:
   - {fileID: 1711135145797907453}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6014844535835411096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 650640957358620102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87071ec293eb2ac40b53e5dd5ff8302a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  workObject: {fileID: 5480987495852792642}
-  worker: {fileID: 7485266540970596122}
-  workConfig: {fileID: 11400000, guid: bf73550bb23d51045848956fb356dcb5, type: 2}
 --- !u!1001 &5437067599256087790
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -115,17 +99,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6686566121489407763, guid: fc8c79f008b5af0408032592ef9fab9c, type: 3}
   m_PrefabInstance: {fileID: 5437067599256087790}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7485266540970596122 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3212573338209270772, guid: fc8c79f008b5af0408032592ef9fab9c, type: 3}
-  m_PrefabInstance: {fileID: 5437067599256087790}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 600854c31573855478228aded2b41666, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &7693572120565981173
 PrefabInstance:
   m_ObjectHideFlags: 0

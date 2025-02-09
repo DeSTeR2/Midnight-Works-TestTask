@@ -15,7 +15,6 @@ namespace RequestManagment
         public int priority;
 
         protected bool isPerfoming = false;
-        private float lifeTime = 20f;
 
         public Request(int priority, Vector3 position)
         {
@@ -32,12 +31,6 @@ namespace RequestManagment
             GC.WaitForPendingFinalizers();
 
             OnRequestDestroy?.Invoke(this);
-        }
-
-        private void Delete()
-        {
-            if (isPerfoming) return;
-            Dispose();
         }
 
         ~Request()

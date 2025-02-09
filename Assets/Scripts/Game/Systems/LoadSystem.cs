@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 
 namespace CustomSystems
 {
@@ -18,8 +17,15 @@ namespace CustomSystems
             tickNumber = (int)(loadTime / tickTime);
         }
 
+        public void UpdateLoadTime(float loadTime) { 
+            this.loadTime = loadTime;
+            tickNumber = (int)(loadTime / tickTime);
+        }
+
         public async void Load()
         {
+            float loadTime = this.loadTime;
+            int tickNumber = this.tickNumber;
             for (int i = 0; i <= tickNumber; i++) {
                 float loadedPercent = ((i + 1) * tickTime) / loadTime;
                 await DelaySystem.DelayFunction(delegate { 

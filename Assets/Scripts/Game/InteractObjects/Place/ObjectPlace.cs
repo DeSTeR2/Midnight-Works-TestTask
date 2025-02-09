@@ -1,6 +1,7 @@
 ﻿using InteractObjects.Place;
 using Resources;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace InteractObjects
 {
@@ -23,9 +24,7 @@ namespace InteractObjects
         }
 
         protected void InitalSetup()
-        {
-            placeStrategy = new(placePositionsParent, capability);
-
+        { 
             LineRenderer lineRenderer = gameObject.GetComponent<LineRenderer>();
             float horizontalSize = 0;
             float verticalSize = 0;
@@ -59,6 +58,15 @@ namespace InteractObjects
         public virtual bool CanPlace(ResourceType type) => placeStrategy.CanPlace();
         public int ObjectNumber() => placeStrategy.ObjectNumber();
         public int RemaintObjectsToFull() => placeStrategy.MaxObjects() - ObjectNumber();
-        public void SetCapability(int capability) => this.capability = capability;
+        public void SetCapability(int capability)
+        {
+            this.capability = capability;
+
+            if (placeStrategy == null) {
+                placeStrategy = new(placePositionsParent);
+            }
+
+            placeStrategy.SetCapability(capability);
+        }
     }
 }   

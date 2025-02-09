@@ -1,4 +1,5 @@
 ﻿using CustomSystems;
+using Data;
 using RequestManagment;
 using Resources;
 using System;
@@ -9,42 +10,65 @@ namespace InteractObjects.Work
     public class MachineWork : WorkObject
     {
         [SerializeField] CraftingReceipt receipt;
+        [SerializeField] WorkObjectConfig workObjectConfig;
 
         [Space]
         [SerializeField] MachineObjectPut putPlace;
         [SerializeField] MachineObjectTake takePlace;
 
         int awailableItems = 0;
-        bool deliveryRequest = false;
 
         public static Action<ResourceType> OnAwailableResource;
-        public int remainToFull;
-        public int objectToTake;
 
         MachineRequestManager requestManager;
+
+        private void Awake()
+        {
+            workObjectConfig.OnConfigChanged += UpdateObject;
+        }
 
         protected override void Start()
         {
             requestManager = new MachineRequestManager(takePlace, putPlace, receipt);
 
-            OnAwailableResource?.Invoke(receipt.craftResult.craftItem.ResourceType);
-            OnAwailableResource?.Invoke(receipt.craftFrom.craftItem.ResourceType);
+            if (workObjectConfig.objectData.isActive || haveToBeActive)
+            {
+                OnAwailableResource?.Invoke(receipt.craftResult.craftItem.ResourceType);
+                OnAwailableResource?.Invoke(receipt.craftFrom.craftItem.ResourceType);
+            }
 
             base.Start();
             putPlace.SetResource(receipt.craftFrom.craftItem.ResourceType);
+            UpdateObject();
         }
 
-        private void Update()
+        protected override void UpdateObject()
         {
-            remainToFull = putPlace.RemaintObjectsToFull();
-            objectToTake = takePlace.ObjectNumber();
+            workTime = workObjectConfig.objectData.workTime;
+            UpdateWorkTime();
+
+            if (workObjectConfig.objectData.isActive || haveToBeActive) Open();
+            else
+            {
+                gameObject.SetActive(false);
+            }
+
+            character.gameObject.SetActive(workObjectConfig.objectData.isHaveWorker);
+
+            putPlace.SetCapability(workObjectConfig.objectData.putCapasity);
+            takePlace.SetCapability(workObjectConfig.objectData.takeCapasity);
+        }
+
+        protected override void Open()
+        {
+            if (gameObject.activeInHierarchy) return;
+            gameObject.SetActive(true);
         }
 
         public override void Work(bool isWork, Character.Character character)
         {
             if (putPlace.ObjectNumber() >= receipt.craftFrom.count && isWork && workingCharacter == null)
             {
-                deliveryRequest = false;
                 this.workingCharacter = character;
                 workStatus.StartLoad(loadSystem);
                 isWorking = true;
@@ -92,6 +116,12 @@ namespace InteractObjects.Work
 
         public void SetPutPlace(int capasity) => putPlace.SetCapability(capasity);
         public void SetTakePlace(int capasity) => takePlace.SetCapability(capasity);
+
+        private void OnDestroy()
+        {
+            workStatus.OnLoadEnd -= AfterWork;
+            workObjectConfig.OnConfigChanged -= UpdateObject;
+        }
 
     }
 }

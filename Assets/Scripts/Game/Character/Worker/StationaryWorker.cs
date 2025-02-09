@@ -15,14 +15,20 @@ namespace Character.Worker
 
         Vector3 workPosition;
 
+        protected override void Awake()
+        {
+            base.Awake();
+            workOblect.SetCharacter(gameObject);
+        }
+
         protected override void Start()
         {
             base.Start();
         }
 
-        private void OnEnable()
+        private async void OnEnable()
         {
-            AssignWalkTarget(workOblect.GetWorkPosition());
+            await AssignWalkTarget(workOblect.GetWorkPosition());
         }
 
         protected override void CompletePath()

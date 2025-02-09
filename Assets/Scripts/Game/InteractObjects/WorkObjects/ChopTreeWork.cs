@@ -1,4 +1,5 @@
 ﻿using CustomSystems;
+using Data;
 using Resources;
 using System;
 using UnityEngine;
@@ -11,6 +12,11 @@ namespace InteractObjects.Work
         [SerializeField] float spawnRadius;
         [SerializeField] protected ResourceType resourceType;
         [SerializeField] int maxObjectsNearTree = 15;
+
+        protected override void Start()
+        {
+            base.Start();
+        }
 
         public override void Work(bool isWork, Character.Character character)
         {
@@ -39,7 +45,28 @@ namespace InteractObjects.Work
         {
             float deltaX = Random.Range(-spawnRadius, spawnRadius);
             float deltaZ = Random.Range(-spawnRadius, spawnRadius);
-            
+
+            float baseOffset = 0.5f;
+
+            if (Mathf.Abs(deltaX) < baseOffset)
+            {
+                if (deltaX < 0)
+                {
+                    deltaX = -baseOffset;
+                }
+                else
+                    deltaX = baseOffset;
+            }
+            if (Mathf.Abs(deltaZ) < baseOffset)
+            {
+                if (deltaZ < 0)
+                {
+                    deltaZ = -baseOffset;
+                }
+                else
+                    deltaZ = baseOffset;
+            }
+
             Vector3 position = transform.position + new Vector3(deltaX, 0, deltaZ);
             return position;
         }

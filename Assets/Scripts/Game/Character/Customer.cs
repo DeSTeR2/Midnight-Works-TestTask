@@ -22,6 +22,7 @@ namespace Character
         ResourceType resourceType = ResourceType.None;
 
         public ResourceType Order { get => resourceType; }
+        public float Satisfaction { get => satisfaction + 0.4f; }
 
         private void OnEnable()
         {
@@ -49,7 +50,7 @@ namespace Character
             ShowEmotion();
         }
 
-        private void ShowEmotion()
+        private async void ShowEmotion()
         {
             List<Emotions> emotions = customerEmotions.emotions;
             Sprite sprite = null;
@@ -67,14 +68,17 @@ namespace Character
             dialogPanel.SetActive(true);
             dialogImage.sprite = sprite;
 
-            DelaySystem.DelayFunction(delegate {
-                dialogPanel.SetActive(false);
+            await DelaySystem.DelayFunction(delegate {
+                if (this != null)
+                {
+                    dialogPanel.SetActive(false);
+                }
             }, 1f);
         }
 
-        protected override void FixedUpdate()
+        protected override void OnTick()
         {
-            base.FixedUpdate();
+            base.OnTick();
             if (onOrder)
             {
                 satisfaction -= satisfactionMoveDownSpeed * Time.fixedDeltaTime;

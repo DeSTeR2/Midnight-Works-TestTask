@@ -28,8 +28,9 @@ public struct Particle
     {
         float maxDuration = 0;
 
-        foreach (ParticleSystem p in particles)
+        for (int i = 0; i<particles.Count;i++)
         {
+            ParticleSystem p = (ParticleSystem)particles[i];
             p.gameObject.transform.position = position;
             p.Play();
 

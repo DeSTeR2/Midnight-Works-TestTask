@@ -1,5 +1,6 @@
 ﻿using Character;
 using CustomSystems;
+using Data;
 using InteractObjects.Place;
 using Resources;
 using System.Resources;
@@ -10,6 +11,7 @@ namespace InteractObjects.Work
     public class AcounterWork : WorkObject
     {
         [SerializeField] Transform customerPositionsParent;
+        [SerializeField] Balance balance;
 
         StorageObject storage;
         CustomerQueue customerQueue;
@@ -33,6 +35,7 @@ namespace InteractObjects.Work
                 InteractObject resource = storage.GetResourse(order);
                 ResourceSystem.instance.BackObject(resource);
                 customer.OrderComplete();
+                balance.BalanceValue += (int)(ResourceSystem.instance.GetPrice(order) * customer.Satisfaction);
             }
             catch
             {

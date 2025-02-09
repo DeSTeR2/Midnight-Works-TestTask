@@ -7,13 +7,14 @@ using UnityEngine;
 namespace CustomSystems
 {
     public class CustomerSystem : MonoBehaviour {
-        [SerializeField] List<AcounterWork> acounters;
+        [SerializeField] Transform acounterParent;
         [SerializeField] Customer customer;
 
         [Space]
         [SerializeField] Transform startPosition;
         [SerializeField] Transform endPosition;
 
+        List<AcounterWork> acounters = new();
         ObjectPool<Customer> pool;
 
         public static CustomerSystem instance;
@@ -25,6 +26,10 @@ namespace CustomSystems
 
         private void Start()
         {
+            for (int i = 0; i < acounterParent.childCount; i++) {
+                acounters.Add(acounterParent.GetChild(i).transform.GetChild(1).GetComponent<AcounterWork>());
+            }
+
             pool = new ObjectPool<Customer>();
             pool.OnPoolIsEmpty += SpawnCustomer;
             CustomerQueue.OnQueueNotFull += AssignCustomerToAcounter;

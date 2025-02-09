@@ -14,6 +14,11 @@ namespace Character
 
         bool isPaused = false;
 
+        string moving = "Moving";
+        string Velocity = "Velocity";
+        string VelocityX = "VelocityX";
+        string VelocityY = "VelocityY";
+
         public bool IsPause { get => isPaused; }
         public CharacterState State { get => state; }
 
@@ -28,28 +33,28 @@ namespace Character
         {
             if (isPaused)
             {
-                animator.SetBool("Moving", false);
-                animator.SetFloat("Velocity", 0);
+                animator.SetBool(moving, false);
+                animator.SetFloat(Velocity, 0);
                 return;
             } 
 
             float x = moveVector.x;
             float z = moveVector.z;
 
-            animator.SetFloat("VelocityX", -x);
-            animator.SetFloat("VelocityY", z);
+            animator.SetFloat(VelocityX, -x);
+            animator.SetFloat(VelocityY, z);
 
             if (x != 0 || z != 0)
             {
-                animator.SetBool("Moving", true);
+                animator.SetBool(moving, true);
             }
             else
             {
-                animator.SetBool("Moving", false);
+                animator.SetBool(moving, false);
             }
 
             float movement = character.UpdateMovement();
-            animator.SetFloat("Velocity", movement);
+            animator.SetFloat(Velocity, movement);
         }
 
         public void PickUp(bool isOnFloor)

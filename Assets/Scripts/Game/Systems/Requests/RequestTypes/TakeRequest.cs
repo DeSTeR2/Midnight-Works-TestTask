@@ -14,17 +14,12 @@ namespace RequestManagment
 
         public override void PerfomRequest(DeliveryWorker worker)
         {
-            if (this == null) return;
+            if (this == null || ResourceSystem.instance == null) return;
 
             worker.AddAction(new Action(requestPosition, ActionType.Take));
             worker.AddAction(new Action(ResourceSystem.instance.GetStoragePosition(), ActionType.Place));
             worker.StartWork(this);
             isPerfoming = true;
-        }
-
-        public override string ToString()
-        {
-            return $"TakeRequest: Pickup at {requestPosition}";
         }
     }
 }

@@ -5064,7 +5064,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: WalkForward
-  m_Speed: 1
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 110117884}
@@ -5631,11 +5631,11 @@ AnimatorStateMachine:
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions:
+  - first: {fileID: 110706766}
+    second: []
   - first: {fileID: 2254706596997652023}
     second:
     - {fileID: -4089921061077998104}
-  - first: {fileID: 110706766}
-    second: []
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 96, y: 12, z: 0}
   m_EntryPosition: {x: 504, y: 12, z: 0}

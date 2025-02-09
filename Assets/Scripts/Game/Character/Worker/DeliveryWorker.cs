@@ -43,6 +43,12 @@ namespace Character.Worker
             ReDoAction();
         }
 
+        protected override void OnTick()
+        {
+            base.OnTick();
+            UpdateCarryPoint();
+        }
+
         public void AddAction(InteractObjects.Work.Actions.Action action)
         {
             actionsToGo.Enqueue(action);
@@ -50,6 +56,7 @@ namespace Character.Worker
 
         public void StartWork(RequestManagment.Request req)
         {
+            DropObject();
             NextPosition();
             requestType = req.ToString();
             currentRequest = req;

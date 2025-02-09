@@ -1,6 +1,7 @@
 ﻿using CustomSystems;
 using Resources;
 using System.Collections.Generic;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEditor.SearchService;
 using UnityEngine;
 
@@ -13,16 +14,17 @@ namespace InteractObjects.Place
 
         int capability;
 
-        public PlaceObjects(Transform positions, int capability)
+        public PlaceObjects(Transform positions)
         {
             this.positions = new();
-            foreach (Transform t in positions)
+            for (int i = 0; i<positions.childCount;i++)
             {
+                Transform t = positions.GetChild(i);
                 this.positions.Add(t);
             }
-
-            this.capability = capability;
         }
+
+        public int SetCapability(int capability) => this.capability = capability;
 
         public bool Place(GameObject go)
         {
@@ -40,7 +42,8 @@ namespace InteractObjects.Place
         public bool CanPlace(int objectNumber = 1)
         {
             UpdateIndex();
-            if (index + objectNumber <= positions.Count && index + objectNumber <= capability) return true;
+            int sum = index + objectNumber;
+            if (sum <= positions.Count && sum <= capability) return true;
             return false;
         }
 

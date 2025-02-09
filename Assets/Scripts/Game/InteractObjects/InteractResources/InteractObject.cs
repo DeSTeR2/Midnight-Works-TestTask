@@ -1,4 +1,5 @@
-﻿using Resources;
+﻿using CustomSystems;
+using Resources;
 using UnityEngine;
 
 namespace InteractObjects
@@ -9,7 +10,7 @@ namespace InteractObjects
         public bool isInFloor;
 
         Resource resource;
-        BoxCollider collider;
+        new BoxCollider collider;
 
         public ResourceType ResourceType { get => config.resourceType; }
 
@@ -40,11 +41,18 @@ namespace InteractObjects
         {
             EmitParticleSystem.instance.Play(ParticleType.PickObject,transform.position);
             collider.enabled = false;
+            collider.isTrigger = true;
         }
 
-        public void PutDown()
+        public void PutDown(bool backToQueue)
         {
+            if (backToQueue)
+            {
+                ResourceSystem.instance.BackResourceToQueue(this);
+            }
+
             collider.enabled = true;
+            collider.isTrigger = false;
             gameObject.transform.parent = null;
             gameObject.transform.rotation = Quaternion.Euler(0, gameObject.transform.rotation.eulerAngles.y, 0);
             EmitParticleSystem.instance.Play(ParticleType.PutDownObject, transform.position + new Vector3(0, 1,0));

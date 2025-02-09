@@ -21,6 +21,7 @@ namespace InteractObjects.Work
             for (int i = 0; i < addNumber; i++) {
                 InteractObject resource = ResourceSystem.instance.RequestSpawnResource(type, Vector3.zero, Quaternion.identity, IsOnFloor);
                 placeStrategy.Place(resource.gameObject);
+                resource.isInFloor = true;
             }
 
             return true;
