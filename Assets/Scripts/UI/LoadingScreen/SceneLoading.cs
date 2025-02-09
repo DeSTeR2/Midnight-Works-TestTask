@@ -9,9 +9,6 @@ namespace UI
     {
         [SerializeField] TextMeshProUGUI loadingText;
 
-        float minLoadingTime = 2;
-        float loadTime = 0;
-
         public void LoadScene(int sceneIndex)
         {
             gameObject.SetActive(true);
@@ -34,7 +31,6 @@ namespace UI
                 if (index == 4) index = 0;
 
                 yield return new WaitForSeconds(0.1f);
-                loadTime += 0.1f;
             }
         }
     }

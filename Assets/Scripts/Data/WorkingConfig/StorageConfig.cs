@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Resources;
+using System;
 using UnityEngine;
 using Utils;
 
@@ -45,6 +46,8 @@ namespace Data
 
         private const int upgradeBy = 20;
 
+        public DictionaryCustom<ResourceType, int> store = new DictionaryCustom<ResourceType, int>();
+
         public delegate void OnChange();
         public OnChange onChange;
 
@@ -75,6 +78,22 @@ namespace Data
             if (data != null)
             {
                 capability = ((StorageData)data).capability;
+                store = ((StorageData)data).store;
+
+                store.Synchronize();
+            } else
+            {
+                int resourceNumber = Enum.GetNames(typeof(ResourceType)).Length;
+                for (int i = 0; i < resourceNumber; i++)
+                {
+                    ResourceType type = (ResourceType)i;
+                    if (type != ResourceType.None)
+                    {
+                        store.Add(type, 0);
+                    }
+                }
+
+                store.Synchronize();
             }
         }
     }

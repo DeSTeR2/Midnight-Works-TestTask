@@ -27,10 +27,10 @@ namespace RequestManagment
 
         public void Dispose()
         {
+            OnRequestDestroy?.Invoke(this);
+
             GC.Collect();
             GC.WaitForPendingFinalizers();
-
-            OnRequestDestroy?.Invoke(this);
         }
 
         ~Request()

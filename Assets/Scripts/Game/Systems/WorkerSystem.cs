@@ -27,19 +27,16 @@ namespace CustomSystems
 
         private void Start()
         {
-            DeliveryWorker.OnWorkerFree += BackWorker;
-
             for (int i = 0; i < workerList.Count; i++)
             {
                 workerList[i].gameObject.SetActive(false);
             }
-            AssignWorkers(20);
         }
 
         public void AssignWorkers(int workerCount)
         {
             for (int i = 0; i < workerCount; i++) { 
-                if (workerList[i].gameObject.activeInHierarchy == false)
+                if (workerList[i].gameObject.activeSelf == false)
                 {
                     workerList[i].gameObject.SetActive(true);
                     freeWorkers.Enqueue(workerList[i]);
@@ -49,21 +46,25 @@ namespace CustomSystems
 
         public async Task<DeliveryWorker> GetWorker()
         {
-            while (freeWorkers.Count == 0) {
+            DeliveryWorker worker = null;
+            while (freeWorkers.Count == 0 || worker == null) {
                 await Task.Delay((int)(1000));
+                if (freeWorkers.Count != 0) { 
+                    worker = freeWorkers.Dequeue();
+                    if (worker.requestType == string.Empty)
+                    {
+                        break;
+                    }
+                    else worker = null;
+                }
             }
 
-            return freeWorkers.Dequeue();
+            return worker;
         }
 
-        private void BackWorker(DeliveryWorker worker)
+        public void BackWorker(DeliveryWorker worker)
         {
             freeWorkers.Enqueue(worker);
-        }
-
-        private void OnDestroy()
-        {
-            DeliveryWorker.OnWorkerFree -= BackWorker;
         }
     }
 }

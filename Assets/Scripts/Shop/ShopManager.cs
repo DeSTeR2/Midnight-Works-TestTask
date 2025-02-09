@@ -49,6 +49,7 @@ namespace Shop
         {
             if (price <= balance.BalanceValue)
             {
+                SoundManager.instance.PlaySound(SoundType.Buy);
                 balance.BalanceValue -= price;
                 return true;
             }

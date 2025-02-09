@@ -24,12 +24,14 @@ namespace Character
         public ResourceType Order { get => resourceType; }
         public float Satisfaction { get => satisfaction + 0.4f; }
 
-        private void OnEnable()
+        private async void OnEnable()
         {
             satisfaction = 1;
             onOrder = true;
 
-            resourceType = SellSystem.CreateSellRequest();
+            await DelaySystem.DelayFunction(delegate {
+                resourceType = SellSystem.CreateSellRequest();
+            }, .5f);
         }
 
         protected override void Start()

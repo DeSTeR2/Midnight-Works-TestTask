@@ -81,7 +81,7 @@ namespace Character
                     await DelaySystem.DelayFunction(delegate
                     {
                         carryObject.PutDown(false);
-                        interact.PutObject(obj.gameObject);
+                        interact.PutObject(obj);
                         carryObject = null;
                     }, .5f);
                     return true;

@@ -16,6 +16,8 @@ MonoBehaviour:
     workTime: 20
     upgradeNumber: 0
     putCapasity: 4
+    objectOnPut: 2
     takeCapasity: 4
+    objectOnTake: 2
     isActive: 1
     isHaveWorker: 1

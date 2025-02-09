@@ -41,7 +41,10 @@ namespace Data
         public int upgradeNumber = 0;
 
         public int putCapasity = 4;
+        public int objectOnPut = 0;
+
         public int takeCapasity = 4;
+        public int objectOnTake = 0;
 
         public bool isActive = false;
         public bool isHaveWorker = false;
@@ -105,6 +108,8 @@ namespace Data
                 takeCapasity = dat.takeCapasity;
                 isActive = dat.isActive;
                 isHaveWorker = dat.isHaveWorker;
+                objectOnPut = dat.objectOnPut;
+                objectOnTake = dat.objectOnTake;
             }
         }
 

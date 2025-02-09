@@ -4,6 +4,7 @@ using RequestManagment;
 using Resources;
 using System;
 using UnityEngine;
+using Utils;
 
 namespace InteractObjects.Work
 {
@@ -15,8 +16,6 @@ namespace InteractObjects.Work
         [Space]
         [SerializeField] MachineObjectPut putPlace;
         [SerializeField] MachineObjectTake takePlace;
-
-        int awailableItems = 0;
 
         public static Action<ResourceType> OnAwailableResource;
 
@@ -31,15 +30,29 @@ namespace InteractObjects.Work
         {
             requestManager = new MachineRequestManager(takePlace, putPlace, receipt);
 
+            base.Start();
+            putPlace.SetResource(receipt.craftFrom.craftItem.ResourceType);
+            UpdateObject();
+
             if (workObjectConfig.objectData.isActive || haveToBeActive)
             {
                 OnAwailableResource?.Invoke(receipt.craftResult.craftItem.ResourceType);
                 OnAwailableResource?.Invoke(receipt.craftFrom.craftItem.ResourceType);
+
+                for (int i = 0; i < workObjectConfig.objectData.objectOnPut; i++)
+                {
+                    InteractObject resource = ResourceSystem.instance.RequestSpawnResource(receipt.craftFrom.craftItem.ResourceType, Vector3.zero, Quaternion.identity, true);
+                    putPlace.PutObject(resource);
+                }
+
+                for (int i = 0; i < workObjectConfig.objectData.objectOnTake; i++)
+                {
+                    InteractObject resource = ResourceSystem.instance.RequestSpawnResource(receipt.craftResult.craftItem.ResourceType, Vector3.zero, Quaternion.identity, true);
+                    takePlace.PutObject(resource);
+                }
             }
 
-            base.Start();
-            putPlace.SetResource(receipt.craftFrom.craftItem.ResourceType);
-            UpdateObject();
+            SaveLoadClassSystem.OnSave += UpdateConfigPlaceItems;
         }
 
         protected override void UpdateObject()
@@ -75,7 +88,7 @@ namespace InteractObjects.Work
             }
             else
             {
-                if (awailableItems < receipt.craftFrom.count)
+                if (putPlace.ObjectNumber() < receipt.craftFrom.count)
                 {
                     DeliveryRequest();
                 }
@@ -90,11 +103,17 @@ namespace InteractObjects.Work
         {
             if (takePlace.AddObject(receipt.craftResult))
             {
-                awailableItems -= receipt.craftFrom.count;
                 putPlace.RemoveObjects(receipt.craftFrom.count);
                 TakeRequest();
             }
             base.AfterWork();
+            UpdateConfigPlaceItems();
+        }
+
+        private void UpdateConfigPlaceItems()
+        {
+            workObjectConfig.objectData.objectOnPut = putPlace.ObjectNumber();
+            workObjectConfig.objectData.objectOnTake = takePlace.ObjectNumber();
         }
 
         public async void TakeRequest()
@@ -119,6 +138,7 @@ namespace InteractObjects.Work
 
         private void OnDestroy()
         {
+            SaveLoadClassSystem.OnSave -= UpdateConfigPlaceItems;
             workStatus.OnLoadEnd -= AfterWork;
             workObjectConfig.OnConfigChanged -= UpdateObject;
         }

@@ -18,12 +18,21 @@ namespace RequestManagment
 
         public override async void PerfomRequest(DeliveryWorker worker)
         {
-            Vector3 position = await ResourceSystem.instance.GetResourcePosition(resourceType);
+            try
+            {
+                Vector3 position = await ResourceSystem.instance.GetResourcePosition(resourceType);
 
-            worker.AddAction(new Action(position, ActionType.Take, resourceType));
-            worker.AddAction(new Action(requestPosition, ActionType.Place));
-            worker.StartWork(this);
-            isPerfoming = true;
+                worker.AddAction(new Action(position, ActionType.Take, resourceType));
+                worker.AddAction(new Action(requestPosition, ActionType.Place));
+                worker.StartWork(this);
+                isPerfoming = true;
+            }
+            catch { }
+        }
+
+        public override string ToString()
+        {
+            return $"DeliveryRequest!";
         }
     }
 }

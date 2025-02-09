@@ -33,7 +33,8 @@ namespace CustomSystems
             {
                 float waitTime = Random.Range(minTimeToPlay, maxTimeToPlay);
                 SoundType rng = sounds[Random.Range(0, sounds.Count)];
-                await DelaySystem.DelayFunction(delegate { 
+                await DelaySystem.DelayFunction(delegate {
+                    if (this == null) return;
                     SoundManager.instance.PlaySound(rng);
                 }, waitTime);
             }

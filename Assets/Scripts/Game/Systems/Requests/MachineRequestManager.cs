@@ -42,6 +42,8 @@ namespace InteractObjects.Work
 
         public void CreateDeliveryRequest()
         {
+            if (deliveryPlace.gameObject.activeInHierarchy == false) return;
+
             int requestToCreate = deliveryPlace.RemaintObjectsToFull() - deliveryRequests.Count;
             if (requestToCreate > 0)
             {
@@ -52,6 +54,8 @@ namespace InteractObjects.Work
 
         public void CreateTakeRequest()
         {
+            if (takePlace.gameObject.activeInHierarchy == false) return;
+
             int requestToCreate = takePlace.ObjectNumber() - takeRequests.Count;
             if (requestToCreate > 0)
             {
@@ -109,40 +113,6 @@ namespace InteractObjects.Work
                     createFunction.Invoke();
                 }
             }, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.FromCurrentSynchronizationContext());
-        }
-
-        private void TakeManagment(int remainObjects, List<TakeRequest> requests)
-        {
-            if (remainObjects > requests.Count)
-            {
-                CreateTakeRequest();
-            }
-            else if (remainObjects < requests.Count)
-            {
-                int removeRequests = requests.Count - remainObjects;
-                for (int i = 0; i < Mathf.Min(removeRequests, requests.Count); i++)
-                {
-                    Request req = requests[0];
-                    req.Dispose();
-                }
-            }
-        }
-
-        private void DeliveryManagment(int remainToFull, List<DeliveryRequest> requests)
-        {
-            if (remainToFull > requests.Count)
-            {
-                CreateDeliveryRequest();
-            }
-            else if (remainToFull < requests.Count)
-            {
-                int removeRequests = requests.Count - remainToFull;
-                for (int i = 0; i < Mathf.Min(removeRequests, requests.Count); i++)
-                {
-                    Request req = requests[0];
-                    req.Dispose();
-                }
-            }
         }
 
         ~MachineRequestManager()

@@ -1,6 +1,5 @@
 ﻿using CustomSystems;
 using InteractObjects.Work;
-using static UnityEditor.IMGUI.Controls.PrimitiveBoundsHandle;
 
 namespace Character.Worker
 {

@@ -1,8 +1,10 @@
+using Animation;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Settings : MonoBehaviour {
+public class Settings : MonoBehaviour
+{
     [Header("Slider")]
     [SerializeField] Slider _soundSlider;
     [SerializeField] Slider _musicSlider;
@@ -10,7 +12,12 @@ public class Settings : MonoBehaviour {
     [Space]
     [SerializeField] Button _closeBtn;
 
-    private void Start() {
+    [Space]
+    [SerializeField] AnimationController openAnimation;
+    [SerializeField] AnimationController closeAnimation;
+
+    private void Start()
+    {
         _soundSlider.value = SoundManager.instance.GetSoundVolume();
         _musicSlider.value = SoundManager.instance.GetMusicVolume();
 
@@ -18,21 +25,27 @@ public class Settings : MonoBehaviour {
         _musicSlider.onValueChanged.AddListener(MusicChange);
     }
 
-    private void SoundChange(float volume) {
+    private void SoundChange(float volume)
+    {
         SoundManager.instance.ChangeSoundVolume(volume);
     }
 
-    private void MusicChange(float volume) {
+    private void MusicChange(float volume)
+    {
         SoundManager.instance.ChangeMusicVolume(volume);
     }
 
     public void Close()
     {
-        gameObject.SetActive(false);
+        closeAnimation.Animate().SetCallback(delegate
+        {
+            gameObject.SetActive(false);
+        });
     }
 
     public void Open()
     {
         gameObject.SetActive(true);
+        openAnimation.Animate();
     }
 }

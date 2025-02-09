@@ -23,10 +23,6 @@ namespace CustomSystems
         private void Awake()
         {
             instance = this;
-        }
-
-        private void Start()
-        {
             resources.Synchronize();
 
             resourcesQueue = new();
@@ -101,7 +97,7 @@ namespace CustomSystems
         public async Task<Vector3> GetResourcePosition(ResourceType resourceType)
         {
             Queue<InteractObject> objects = resourcesQueue[resourceType];
-
+            
             while (true)
             {
                 if (objects.Count != 0)

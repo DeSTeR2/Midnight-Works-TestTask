@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Balance
   m_EditorClassIdentifier: 
   balanceData:
-    balance: 60
+    balance: 0

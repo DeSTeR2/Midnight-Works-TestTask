@@ -8,15 +8,15 @@ using InteractObjects;
 using System.Threading.Tasks;
 using InteractObjects.Place;
 using RequestManagment;
-
 namespace Character.Worker
 {
     public class DeliveryWorker : AIWalkable
     {
-
+        [SerializeField] float timeToBeFree = 10;
         Queue<InteractObjects.Work.Actions.Action> actionsToGo = new();
 
         public string requestType;
+        public bool isFree = true;
 
         public static Action<DeliveryWorker> OnWorkerFree;
 
@@ -24,6 +24,7 @@ namespace Character.Worker
         Request currentRequest;
 
         int redoTimes = 0;
+        float time = 0;
 
         protected override async void CompletePath()
         {
@@ -47,6 +48,19 @@ namespace Character.Worker
         {
             base.OnTick();
             UpdateCarryPoint();
+
+            if (isFree && currentAction == null)
+            {
+                time += Time.fixedDeltaTime;
+
+                if (time >= timeToBeFree)
+                {
+                    WorkerFree();
+                }
+            } else
+            {
+                isFree = false;
+            }
         }
 
         public void AddAction(InteractObjects.Work.Actions.Action action)
@@ -60,6 +74,7 @@ namespace Character.Worker
             NextPosition();
             requestType = req.ToString();
             currentRequest = req;
+            isFree = false;
         }
 
         private async void ReDoAction()
@@ -67,8 +82,8 @@ namespace Character.Worker
             redoTimes++;
             if (redoTimes == 4)
             {
-                WorkerFree(currentRequest);
                 currentRequest.Dispose();
+                WorkerFree();
                 return;
             }
 
@@ -79,7 +94,8 @@ namespace Character.Worker
         {
             if (actionsToGo.Count == 0)
             {
-                WorkerFree(currentRequest);
+                currentAction = null;
+                WorkerFree();
                 return;
             }
 
@@ -88,11 +104,15 @@ namespace Character.Worker
             await AssignWalkTarget(position);
         }
 
-        private void WorkerFree(Request request)
+        private void WorkerFree()
         {
             redoTimes = 0;
-            OnWorkerFree?.Invoke(this);
+            time = 0;
+            isFree = true;
             requestType = string.Empty;
+            currentAction = null;
+            actionsToGo.Clear();
+            WorkerSystem.instance.BackWorker(this);
         }
 
         protected async Task<bool> TakeObject(ResourceType resourceType)

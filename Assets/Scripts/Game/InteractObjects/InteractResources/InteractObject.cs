@@ -1,5 +1,6 @@
 ﻿using CustomSystems;
 using Resources;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace InteractObjects
@@ -13,6 +14,9 @@ namespace InteractObjects
         new BoxCollider collider;
 
         public ResourceType ResourceType { get => config.resourceType; }
+        public bool IsOnObjectPlace = false;
+
+        ObjectPlace objectPlace;
 
         private void OnEnable()
         {
@@ -37,11 +41,25 @@ namespace InteractObjects
             }
         }
 
+        public void PlaceOnObjectPlace(ObjectPlace objectPlace)
+        {
+            this.objectPlace = objectPlace;
+            IsOnObjectPlace = true;
+        }
+
         public void PickUp()
         {
             EmitParticleSystem.instance.Play(ParticleType.PickObject,transform.position);
             collider.enabled = false;
             collider.isTrigger = true;
+
+            if (IsOnObjectPlace)
+            {
+                objectPlace.TookResource(ResourceType);
+            }
+
+            IsOnObjectPlace = false;
+            objectPlace = null;
         }
 
         public void PutDown(bool backToQueue)

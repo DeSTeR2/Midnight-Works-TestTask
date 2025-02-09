@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: WorkObjectConfig 11
   m_EditorClassIdentifier: 
   objectData:
-    workTime: 20
+    workTime: 5
     upgradeNumber: 0
-    putCapasity: 4
-    takeCapasity: 4
+    putCapasity: 20
+    objectOnPut: 13
+    takeCapasity: 20
+    objectOnTake: 19
     isActive: 1
     isHaveWorker: 1

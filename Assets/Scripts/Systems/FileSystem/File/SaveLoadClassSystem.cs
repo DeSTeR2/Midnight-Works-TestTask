@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,6 +12,7 @@ namespace Utils
         [SerializeField] List<ScriptableObject> saveScriptableObjects;
         List<IFile> filesList;
 
+        public static Action OnSave;
 
         private void Awake()
         {
@@ -33,6 +34,7 @@ namespace Utils
 
         private void Save()
         {
+            OnSave?.Invoke();
             foreach (ISavable file in filesList) { 
                 file.Save();
             }

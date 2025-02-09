@@ -20,6 +20,7 @@ namespace Data.Assigner
         private void Assign()
         {
             storage.SetCapability(workConfig.storageData.capability);
+            storage.SetItems(workConfig.storageData.store);
         }
 
         private void OnDestroy()

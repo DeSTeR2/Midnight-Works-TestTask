@@ -1,8 +1,6 @@
 ﻿using CustomSystems;
 using Resources;
 using System.Collections.Generic;
-using Unity.VisualScripting.Dependencies.NCalc;
-using UnityEditor.SearchService;
 using UnityEngine;
 
 namespace InteractObjects.Place
@@ -80,7 +78,7 @@ namespace InteractObjects.Place
                 int number = 0;
                 for (int i = 0; i < capability; i++)
                 {
-                    number += (positions[i].childCount == 1 ? 1 : 0);
+                    number += (positions[i].childCount != 0 ? 1 : 0);
                 }
                 return number;
             }

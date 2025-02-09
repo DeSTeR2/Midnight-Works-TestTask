@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DeliveryWorkerConfig
   m_EditorClassIdentifier: 
   objectData:
-    workerNumber: 20
+    workerNumber: 5

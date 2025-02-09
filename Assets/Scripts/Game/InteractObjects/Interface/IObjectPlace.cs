@@ -6,7 +6,7 @@ namespace InteractObjects
     interface IObjectPlace
     {
         bool IsOnFloor { get; }
-        void PutObject(GameObject go);
+        void PutObject(InteractObject go);
         bool CanPlace(ResourceType resourceType);
     }
 }

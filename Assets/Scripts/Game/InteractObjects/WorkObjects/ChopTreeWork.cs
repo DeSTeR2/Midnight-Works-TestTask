@@ -13,11 +13,6 @@ namespace InteractObjects.Work
         [SerializeField] protected ResourceType resourceType;
         [SerializeField] int maxObjectsNearTree = 15;
 
-        protected override void Start()
-        {
-            base.Start();
-        }
-
         public override void Work(bool isWork, Character.Character character)
         {
             Collider[] colliders = Physics.OverlapSphere(transform.position, spawnRadius);

@@ -12,10 +12,10 @@ namespace InteractObjects.Work
 
         public void SetResource(ResourceType requaredResource) => this.requaredResource = requaredResource;
 
-        public override void PutObject(GameObject go)
+        public override void PutObject(InteractObject interactObject)
         {
-            base.PutObject(go);
-            go.GetComponent<BoxCollider>().enabled = false;
+            base.PutObject(interactObject);
+            interactObject.GetComponent<BoxCollider>().enabled = false;
             OnObjectPlace?.Invoke();
         }
 

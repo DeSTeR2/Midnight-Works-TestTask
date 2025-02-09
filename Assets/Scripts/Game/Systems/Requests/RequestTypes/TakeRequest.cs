@@ -21,5 +21,10 @@ namespace RequestManagment
             worker.StartWork(this);
             isPerfoming = true;
         }
+
+        public override string ToString()
+        {
+            return $"TakeRequest!";
+        }
     }
 }

@@ -30,20 +30,25 @@ namespace CustomSystems
 
         private static async void StartPerfoming()
         {
+            bool start = true;
+
             while (gamePlay)
             {
+                await Task.Delay(1000);
+                
                 if (requests.Count != 0)
                 {
-                    await PerformeRequest();
+                    PerformeRequest();
                 }
-                
 
-                await Task.Delay(1000);
+
                 timer += 1;
-                if (timer >= 60)
+                if (timer >= 20 || start)
                 {
+                    Debug.Log("Requests refreshed!");
                     OnUpdateRequests?.Invoke();
                     timer = 0;
+                    start = false;
                 }
             }
         }
@@ -62,8 +67,17 @@ namespace CustomSystems
             {
                 request = requests[0];
                 requests.RemoveAt(0);
+
+                if (requests.Count == 0) break;
             }
-            request.PerfomRequest(worker);
+
+            if (request != null)
+            {
+                request.PerfomRequest(worker);
+            } else
+            {
+                WorkerSystem.instance.BackWorker(worker);
+            }
         }
     }
 

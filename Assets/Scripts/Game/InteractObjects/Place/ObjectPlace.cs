@@ -48,15 +48,20 @@ namespace InteractObjects
 
             BoxCollider boxCollider = gameObject.AddComponent<BoxCollider>();
             boxCollider.size = new Vector3(horizontalSize, 2, verticalSize);
+            boxCollider.isTrigger = true;
         }
 
-        public virtual void PutObject(GameObject go)
+        public virtual void PutObject(InteractObject go)
         {
-            placeStrategy.Place(go);
+            placeStrategy.Place(go.gameObject);
+            go.PlaceOnObjectPlace(this);
         }
 
         public virtual bool CanPlace(ResourceType type) => placeStrategy.CanPlace();
-        public int ObjectNumber() => placeStrategy.ObjectNumber();
+        public int ObjectNumber() { 
+            int number = placeStrategy.ObjectNumber();
+            return number;
+        }
         public int RemaintObjectsToFull() => placeStrategy.MaxObjects() - ObjectNumber();
         public void SetCapability(int capability)
         {
@@ -67,6 +72,11 @@ namespace InteractObjects
             }
 
             placeStrategy.SetCapability(capability);
+        }
+
+        public virtual void TookResource(ResourceType resourceType)
+        {
+
         }
     }
 }   

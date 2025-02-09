@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace InteractObjects.Work.Actions
 {
-    public struct Action
+    public class Action
     {
         public Vector3 position;
         public ActionType actionType;
