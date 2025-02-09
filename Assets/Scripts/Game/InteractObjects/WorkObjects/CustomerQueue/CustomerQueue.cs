@@ -56,7 +56,11 @@ namespace InteractObjects.Work
         private async void MoveCustomers()
         {
             for (int i = 0; i < customers.Count; i++) {
-                await customers[i].AssignWalkTarget(positions[i].gameObject);
+                try
+                {
+                    await customers[i].AssignWalkTarget(positions[i].gameObject);
+                }
+                catch { }
             }
         }
     }

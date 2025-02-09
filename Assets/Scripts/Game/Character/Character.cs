@@ -33,6 +33,7 @@ namespace Character
         protected virtual void Start()
         {
             animationController = new(animator, this);
+            UpdateCarryPoint();
         }
 
         protected void SetMoveVector(Vector3 moveVector)
@@ -194,6 +195,8 @@ namespace Character
 
         protected void UpdateCarryPoint()
         {
+            if (leftHand == null || rightHand == null || carryObject == null) return;
+
             Vector3 position = (leftHand.transform.position + rightHand.transform.position) / 2;
             carryPoint.position = position;
         }

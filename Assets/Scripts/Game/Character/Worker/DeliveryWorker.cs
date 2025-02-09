@@ -7,13 +7,13 @@ using CustomSystems;
 using InteractObjects;
 using System.Threading.Tasks;
 using InteractObjects.Place;
-using System.ComponentModel;
 using RequestManagment;
 
 namespace Character.Worker
 {
     public class DeliveryWorker : AIWalkable
     {
+
         Queue<InteractObjects.Work.Actions.Action> actionsToGo = new();
 
         public string requestType;

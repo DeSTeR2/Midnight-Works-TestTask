@@ -23,8 +23,12 @@ namespace Character.Worker
                 animationController.WorkAnimation(CharacterAnimations.CoppingTree, true);
             } else
             {
-                axe.SetActive(true);
-                await DelaySystem.DelayFunction(ReWork, 3f);
+                try
+                {
+                    axe.SetActive(true);
+                    await DelaySystem.DelayFunction(ReWork, 3f);
+                }
+                catch { }
             }
         }
 

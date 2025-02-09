@@ -1,9 +1,6 @@
 using Data;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
-using UnityEditorInternal;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour
@@ -33,7 +30,13 @@ public class SoundManager : MonoBehaviour
     }
 
     private void Awake() {
-        instance = this;
+        if (instance == null) { 
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        } else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Start() {

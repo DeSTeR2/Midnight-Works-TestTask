@@ -75,12 +75,16 @@ namespace InteractObjects.Place
         }
         public int ObjectNumber()
         {
-            int number = 0;
-            for (int i = 0; i < capability; i++)
+            try
             {
-                number += (positions[i].childCount == 1 ? 1 : 0);
+                int number = 0;
+                for (int i = 0; i < capability; i++)
+                {
+                    number += (positions[i].childCount == 1 ? 1 : 0);
+                }
+                return number;
             }
-            return number;
+            catch { return 0; }
         }
         public int MaxObjects() => capability;
     

@@ -6,7 +6,11 @@ using UnityEngine;
 
 public enum SoundType {
     Buy,
-    Win, 
+    Sold,
+    Nature1,
+    Nature2,
+    Nature3,
+    Nature4,
 }
 
 [Serializable]

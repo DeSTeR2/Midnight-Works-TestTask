@@ -36,6 +36,7 @@ namespace InteractObjects.Work
                 ResourceSystem.instance.BackObject(resource);
                 customer.OrderComplete();
                 balance.BalanceValue += (int)(ResourceSystem.instance.GetPrice(order) * customer.Satisfaction);
+                SoundManager.instance.PlaySound(SoundType.Sold);
             }
             catch
             {
