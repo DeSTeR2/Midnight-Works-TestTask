@@ -33,9 +33,16 @@
             for (int i = activeTweens.Count - 1; i >= 0; i--)
             {
                 Tween tween = activeTweens[i];
-                tween.Update(deltaTime);
-                if (tween.IsCompleted)
+
+                try
                 {
+                    tween.Update(deltaTime);
+                    if (tween.IsCompleted)
+                    {
+                        activeTweens.RemoveAt(i);
+                    }
+                }
+                catch {
                     activeTweens.RemoveAt(i);
                 }
             }

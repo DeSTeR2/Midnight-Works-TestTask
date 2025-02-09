@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace CustomSystems
 {
@@ -6,31 +8,51 @@ namespace CustomSystems
     {
         float loadTime;
         float tickTime;
-
         int tickNumber;
+        CancellationTokenSource cancellationTokenSource;
 
         public Action<float> OnTickEnd;
-        
-        public LoadSystem(float loadTime, float tickTime) {
+
+        public LoadSystem(float loadTime, float tickTime)
+        {
             this.loadTime = loadTime;
             this.tickTime = tickTime;
             tickNumber = (int)(loadTime / tickTime);
         }
 
-        public void UpdateLoadTime(float loadTime) { 
+        public void UpdateLoadTime(float loadTime)
+        {
             this.loadTime = loadTime;
             tickNumber = (int)(loadTime / tickTime);
         }
 
-        public async void Load()
+        public void Stop()
         {
-            float loadTime = this.loadTime;
-            int tickNumber = this.tickNumber;
-            for (int i = 0; i <= tickNumber; i++) {
-                float loadedPercent = ((i + 1) * tickTime) / loadTime;
-                await DelaySystem.DelayFunction(delegate { 
+            cancellationTokenSource?.Cancel();
+        }
+
+        public async Task Load()
+        {
+            cancellationTokenSource = new CancellationTokenSource();
+            CancellationToken token = cancellationTokenSource.Token;
+
+            float currentLoadTime = loadTime;
+            int currentTickNumber = tickNumber;
+
+            for (int i = 0; i <= currentTickNumber; i++)
+            {
+                token.ThrowIfCancellationRequested();
+                float loadedPercent = ((i + 1) * tickTime) / currentLoadTime;
+
+                try
+                {
+                    await Task.Delay(TimeSpan.FromSeconds(tickTime), token);
                     OnTickEnd?.Invoke(loadedPercent);
-                },  tickTime);
+                }
+                catch (OperationCanceledException)
+                {
+                    break;
+                }
             }
         }
     }

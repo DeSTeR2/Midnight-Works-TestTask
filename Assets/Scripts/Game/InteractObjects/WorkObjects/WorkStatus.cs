@@ -15,6 +15,12 @@ namespace InteractObjects.Work
 
         public void StartLoad(LoadSystem loadSystem)
         {
+            if (loadSystem != null)
+            {
+                loadSystem.OnTickEnd -= UpdateStatus;
+                loadSystem.Stop();
+            }
+
             gameObject.SetActive(true);
             this.loadSystem = loadSystem;
             
